@@ -8,14 +8,14 @@
 
 title: Random AI Blog
 description: Random experiments in Artificial Intelligence, Machine Learning and Deep Learning
-github_username: jph00
+github_username: mravendi
 
 # Email and twitter are optional:
 email:
 twitter_username:
 
 # Set this to true to get LaTeX math equation support
-use_math:
+use_math: True
 
 # Add your Google Analytics ID here if you have one and want to use it
 google_analytics:
