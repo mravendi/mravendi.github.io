@@ -73,7 +73,7 @@ img, target-coco_train[0]
 print (img.size)
 (640, 480)
 ```
-![sample image](https://github.com/mravendi/mravendi.github.io/blob/master/images/cocosample.jpg)
+![sample image](images/cocosample.jpg)
 
 You can follow the same process to create the validation dataset.
 
