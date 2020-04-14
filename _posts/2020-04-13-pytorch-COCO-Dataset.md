@@ -73,8 +73,9 @@ img, target-coco_train[0]
 print (img.size)
 (640, 480)
 ```
+![sample image](https://github.com/mravendi/mravendi.github.io/blob/master/images/cocosample.png)
 
-
+You can follow the same process to create the validation dataset.
 
 
 
