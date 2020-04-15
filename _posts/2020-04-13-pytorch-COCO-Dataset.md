@@ -2,7 +2,9 @@
 
 The PyTorch torchvision package has multiple popular built-in datasets. To see the list of PyTorch built-in datasets, visit the following [link](https://pytorch.org/docs/stable/torchvision/index.html). In this post, we will show you how to create a PyTorch dataset from COCO 2017.
 
-TOC {:toc}
+
+1. TOC
+{:toc}
 
 ## Downloading COCO Dataset
 COCO is a large-scale object detection, segmentation, and captioning dataset. You can find more details about it here. COCO 2017 has over 118K training sample and 5000 validation samples. PyTorch torchvision does not automatically download the COCO dataset. Thus, we need to first download the dataset. Follow the following steps to download the COCO 2017 dataset.
