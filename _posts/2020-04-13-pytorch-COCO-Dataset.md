@@ -1,6 +1,6 @@
 # PyTorch torchvision COCO Dataset
 
-The PyTorch torchvision package has multiple popular built-in datasets. To see the list of PyTorch built-in datasets, visit the following [link](https://pytorch.org/docs/stable/torchvision/index.html). In this post, we will show you how to create a PyTorch dataset from COCO 2017.
+The PyTorch torchvision package has multiple popular built-in datasets. To see the list of PyTorch built-in datasets, visit the following [link](https://pytorch.org/docs/stable/torchvision/index.html). In this post, we will show you how to create a PyTorch dataset from COCO 2017. Here is the outline of this post:
 
 
 1. TOC
@@ -47,31 +47,31 @@ Now, we can create a PyTorch dataset for COCO. Here we are interested in COCO de
 To create a PyTorch dataset for the training data, follow the following steps.
 - Import the package:
 
-```
+```python
 import torchvision.datasets as dset
 ```
 
 - Define the path to the training and annotation data:
-```
+```python
 path2data="./data/train2017"
 path2json="./data/annotations/instances_train2017.json"﻿﻿﻿
 ```
 
 - Create an object of CocoDetection class for the training dataset:
 
-```
+```python
 coco_train = dset.CocoDetection(root = path2data,annFile = path2json)
 ```
 
 - Let us get the number of samples in this coco_train:
 
-```
+```python
 print('Number of samples: ', len(coco_train))
 Number of samples:  118287
 ```
 
 - Let us look at one sample:
-```
+```python
 img, target-coco_train[0]
 print (img.size)
 (640, 480)
