@@ -5,4 +5,4 @@ See my book: [PyTorch Computer Vision Cook Book](https://www.amazon.com/PyTorch-
 
 ![pytorch book cover](images/pytorchcvc.jpg)
 
-![pytorch book cover]({{BASE_PATH }}/images/pytorchcvc.jpg)
+![pytorch book cover]({{BASE_PATH }}/images/cocosample.jpg)
