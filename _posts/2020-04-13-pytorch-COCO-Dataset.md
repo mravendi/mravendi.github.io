@@ -80,7 +80,7 @@ img, target-coco_train[0]
 print (img.size)
 ```
 
-  (640, 480)
+    (640, 480)
 
 ![sample image](/images/cocosample.jpg)
 
