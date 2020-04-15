@@ -7,7 +7,7 @@
 # https://learnxinyminutes.com/docs/yaml/
 
 title: Random AI Blog
-description: Random experiments in Artificial Intelligence, Machine Learning and Deep Learning
+description: Random experiments in Artificial Intelligence, Machine Learning and Deep Learning and Data Science!
 github_username: mravendi
 
 # Email and twitter are optional:
@@ -19,6 +19,9 @@ use_math: True
 
 # Add your Google Analytics ID here if you have one and want to use it
 google_analytics:
+
+# base path
+BASE_PATH : /
 
 # Everything below here can be ignored, unless you want to change the theme entirely
 theme: minima
