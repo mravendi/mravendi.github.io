@@ -73,7 +73,8 @@ img, target-coco_train[0]
 print (img.size)
 (640, 480)
 ```
-![sample image]({{site.url}}/images/cocosample.jpg)
+
+![sample image](/images/cocosample.jpg)
 
 You can follow the same process to create the validation dataset.
 
