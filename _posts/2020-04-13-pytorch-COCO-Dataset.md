@@ -52,6 +52,7 @@ import torchvision.datasets as dset
 ```
 
 - Define the path to the training and annotation data:
+
 ```python
 path2data="./data/train2017"
 path2json="./data/annotations/instances_train2017.json"﻿﻿﻿
@@ -72,6 +73,7 @@ print('Number of samples: ', len(coco_train))
 
 
 - Let us look at one sample:
+
 ```python
 img, target-coco_train[0]
 print (img.size)
