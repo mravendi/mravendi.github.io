@@ -70,7 +70,7 @@ coco_train = dset.CocoDetection(root = path2data,annFile = path2json)
 print('Number of samples: ', len(coco_train))
 ```
 
-  Number of samples:  118287
+    Number of samples:  118287
 
 
 - Let us look at one sample:
