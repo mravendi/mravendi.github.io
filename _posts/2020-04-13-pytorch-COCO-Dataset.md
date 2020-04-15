@@ -69,6 +69,7 @@ coco_train = dset.CocoDetection(root = path2data,annFile = path2json)
 ```python
 print('Number of samples: ', len(coco_train))
 ```
+
   Number of samples:  118287
 
 
@@ -78,6 +79,7 @@ print('Number of samples: ', len(coco_train))
 img, target-coco_train[0]
 print (img.size)
 ```
+
   (640, 480)
 
 ![sample image](/images/cocosample.jpg)
