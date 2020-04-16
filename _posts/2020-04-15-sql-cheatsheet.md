@@ -21,10 +21,25 @@ LIMIT 10
 ```
 
 
-- getting the number of days between two datetime columns
+- get the number of days between two datetime columns
 
 ```sql
 SELECT date_col1, date_col2,
        date_col1::date - date_col2::date AS days_diff
        FROM table_name
 ```
+
+- using a window function
+
+For instance, to get the aggregate of an expression in the past 30 days:
+
+```sql
+aggrgt_func(expr)
+       OVER(
+              PARTITION BY col1
+              ORDER BY extract(epoch from datetime)
+              RANGE BETWEEN 3600*24*30 PRECEDING AND CURRENT ROW
+       ) AS num_last_30
+```
+
+
