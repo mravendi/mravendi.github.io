@@ -39,7 +39,7 @@ SUM(expr)
               PARTITION BY col1
               ORDER BY extract(epoch from datetime)
               RANGE BETWEEN 3600*24*5 PRECEDING AND CURRENT ROW
-       ) AS num_last_30
+       ) AS sum_last_5
 ```
 
 
