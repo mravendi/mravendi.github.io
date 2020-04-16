@@ -31,14 +31,14 @@ SELECT date_col1, date_col2,
 
 - using a window function
 
-For instance, to get the sum of an expression over the past 30 days:
+For instance, to get the sum of an expression over the past 5 days:
 
 ```sql
 SUM(expr)
        OVER(
               PARTITION BY col1
               ORDER BY extract(epoch from datetime)
-              RANGE BETWEEN 3600*24*30 PRECEDING AND CURRENT ROW
+              RANGE BETWEEN 3600*24*5 PRECEDING AND CURRENT ROW
        ) AS num_last_30
 ```
 
