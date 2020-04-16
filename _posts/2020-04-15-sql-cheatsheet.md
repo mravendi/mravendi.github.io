@@ -1,4 +1,4 @@
-# SQL Cheatsheet
+# SQL Cheatsheet: Postgresql 
 
 - selecting a column from a table 
 
@@ -21,3 +21,10 @@ LIMIT 10
 ```
 
 
+- getting the number of days between two datetime columns
+
+```sql
+SELECT date_col1, date_col2,
+       date_col1::date - date_col2::date AS days_diff
+       FROM table_name
+```
