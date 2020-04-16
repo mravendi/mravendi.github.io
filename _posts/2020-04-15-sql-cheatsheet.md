@@ -31,10 +31,10 @@ SELECT date_col1, date_col2,
 
 - using a window function
 
-For instance, to get the aggregate of an expression in the past 30 days:
+For instance, to get the sum of an expression over the past 30 days:
 
 ```sql
-aggrgt_func(expr)
+SUM(expr)
        OVER(
               PARTITION BY col1
               ORDER BY extract(epoch from datetime)
