@@ -6,7 +6,7 @@ Over-fitting is the nightmare of AI and machine learning practitioners. The best
 
 In this post, we are going to look at a few possible scenarios that over-fitting could destroy our models.
 
-## 
+
 
 ## Basic Setup
 
