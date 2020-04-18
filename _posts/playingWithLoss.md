@@ -114,8 +114,6 @@ In another example, the ground truth is missing for the first object (ellipse):
 ![Ground truth is missing for the ellipse.](/images/playingWithLoss/GroundTruthMissingEclipse.png)*Ground truth is missing for the ellipse.*
 
 
-![Prediction outputs.](/master/images/playingWithLoss/predictionOutputs2.png)*Prediction outputs.*
-
 In these scenarios, if we still use the standard loss functions, we may be penalizing the segmentation model incorrectly. The reason is that the pixels belong to the missing ground truth will be considered as the background and multiplied by *-log(p_i)*, where *p_i* is the small prediction probability and as a result *-log(p_i)* is going to be a large number. Note that this is based on our assumption that there should be a ground truth but for whatever reason annotators missed it.
 
 
