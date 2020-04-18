@@ -192,7 +192,8 @@ def custom_loss_tensor(y_true, y_pred):
         loss+=y_true[:,:,cls]*K.log(y_pred[:,:,cls])
         
     return -loss
-    
+```
+
 If we calculate the loss for 8 annotations and two random missing objects we will get custom_loss= 0.191179. This shows that we do not penalize the AI model for providing a correct output just because the ground truth does not exist. In practice, this technique will lead to better overall performance for the objects with missing ground truth.
 
 ## Summary
