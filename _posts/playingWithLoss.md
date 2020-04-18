@@ -51,13 +51,16 @@ Y_GT=genMasks(nb_batch,C=3,h,w)
 ```
 
 Typical ground truth masks for the objects would look like below:
+
 ![typical ground truth](/images/playingWithLoss/typicalGroundTruth.png)*Typical ground truth for semantic segmentation.*
 
 
 Also assume that we develop a deep learning model, which predicts the following outputs:
+
 ![Typical predictions](/images/playingWithLoss/typical%20Predictions.png)*Typical model predictions*
 
 First, we are going to use the standard loss function for semantic segmentation, i.e., the categorical cross-entropy as written below:
+
 ![Standard categorical cross entropy](/images/playingWithLoss/standardLoss.gif)*Standard categorical cross entropy*
 
 
@@ -141,12 +144,14 @@ pred=K.argmax(y_pred,axis=-1)
 ```
 
 Then, we check if the predicted output is, in fact, equal to the missing object. This is also possible using:
+
 ```python
 K.equal(pred,cls)
 ```
 
 
 Note, in the actual implementation, we use:
+
 ```python
 K.not_equal(pred,cls)
 ```
