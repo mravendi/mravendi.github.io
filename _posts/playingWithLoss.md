@@ -7,5 +7,5 @@ such as semantic segmentation. We use Python 2.7 and Keras 2.x for implementatio
 Loss Functions are at the heart of any learning-based algorithm. We convert the learning problem
 into an optimization problem, define a loss function and then optimize the algorithm to minimize the loss function.
 
-![loss function loop]()*Source: Deep Learning with Python, François Chollet*
+![loss function loop](/images/playingWithLoss/playingwithlossfunction1.png)*Source: Deep Learning with Python, François Chollet*
 
