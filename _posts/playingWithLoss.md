@@ -1,18 +1,16 @@
 # Playing with Loss Functions in Deep Learning
 
-In this post, we are going to be developing custom loss functions in deep learning applications
-such as semantic segmentation. We use Python 2.7 and Keras 2.x for implementation. Here is the outline of this post:
+In this post, we will develop a custom loss function for semantic segmentation. We will use Python 2.7 and Keras 2.x for the implementation. Here is the outline of this post:
 
 1. TOC
 {:toc}
 
 ## Standard Loss Function
-Loss Functions are at the heart of any learning-based algorithm. We convert the learning problem
-into an optimization problem, define a loss function and then optimize the algorithm to minimize the loss function.
+Loss Functions are at the heart of learning-based algorithms. For instance, in stochastic gredient descent algorithm (SGD), we convert the learning problem into an optimization problem, define a loss function and then optimize the algorithm to minimize the loss function.
 
 ![loss function loop](/images/playingWithLoss/playingwithlossfunction1.png)*Source: Deep Learning with Python, François Chollet*
 
-Consider a semantic segmentation of *C* objects. This means that there are *C* objects in the image that need to be segmented. We are given a set of images and corresponding annotations for training and developing the algorithm. For simplicity, let us assume that there are *C=3* objects including an ellipse, a rectangle, and a circle. We can use a simple code such as below to generate some masks with three objects.
+Consider a semantic segmentation of *C* objects. This means that there are *C* objects in the image to be segmented. We are given a set of images and corresponding annotations for training and developing the algorithm. For simplicity, let us assume that there are *C=3* objects including an ellipse, a rectangle, and a circle. We can use the following code snippet to generate a few masks with three objects.
 
 ```python
 from skimage.draw import ellipse,polygon,circle
@@ -50,12 +48,12 @@ def genMasks(N,C,H,W):
 Y_GT=genMasks(nb_batch,C=3,h,w)
 ```
 
-Typical ground truth masks for the objects would look like below:
+The following figure depicts typical ground truth masks for the three objects:
 
 ![typical ground truth](/images/playingWithLoss/typicalGroundTruth.png)*Typical ground truth for semantic segmentation.*
 
 
-Also assume that we develop a deep learning model, which predicts the following outputs:
+Also assume that we developed a deep learning model such as U-Net, which predicts the following outputs:
 
 ![Typical predictions](/images/playingWithLoss/typical%20Predictions.png)*Typical model predictions*
 
