@@ -51,6 +51,7 @@ Y_GT=genMasks(nb_batch,C=3,h,w)
 ```
 
 Typical ground truth masks for the objects would look like below:
-![typical ground truth]()*Typical ground truth for objects.*
+
+![typical ground truth](/images/playingWithLoss/typicalGroundTruth.png)*Typical ground truth for objects.*
 
 
