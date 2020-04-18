@@ -194,5 +194,5 @@ If we calculate the loss for 8 annotations and two random missing objects we wil
 
 ## Summary
 We can always use the standard loss function and they work fine for most cases. However, if you encounter special cases and would like better performance, you can customize the loss function based on your needs.
-```
+
 
