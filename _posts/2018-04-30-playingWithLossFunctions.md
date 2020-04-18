@@ -101,7 +101,7 @@ Now we are going to develop our own custom loss function. This customization may
 
 In our case study, let us assume that for some reason there is missing ground truth. For instance, in the below figure there is no ground truth for object 3 (circle) while the deep learning model provides a prediction.
 
-![Ground truth is missing for the circle.](/master/images/playingWithLoss/groundTruthMissing.png)*Ground truth is missing for the circle.*
+![Ground truth is missing for the circle.](/images/playingWithLoss/groundTruthMissing.png)*Ground truth is missing for the circle.*
 
 
 ![Prediction output](/images/playingWithLoss/predictionOutputs2.png)*Prediction output*
