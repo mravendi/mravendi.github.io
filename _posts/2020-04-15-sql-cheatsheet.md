@@ -22,7 +22,8 @@ LIMIT 10
 - truncate or round double numbers
 
 ```sql
-SELECT TRUNC(CAST(col_nm AS numeric), 2) FROM table_name
+SELECT TRUNC(CAST(col_nm AS numeric), 2) 
+FROM table_name
 LIMIT 10
 
 SELECT ROUND(col_name::numeric,2)    
