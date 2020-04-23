@@ -19,6 +19,17 @@ WHERE cnd_exp
 LIMIT 10
 ```
 
+- truncate or round double numbers
+
+```sql
+SELECT TRUNC(CAST(col_nm AS numeric), 2) FROM table_name
+LIMIT 10
+
+SELECT ROUND(col_name::numeric,2)    
+FROM table_name
+LIMIT 10
+```
+
 
 ## Timestamps and Datetime
 - get the number of days between two datetime columns
@@ -54,7 +65,6 @@ SUM(expr)
 
 
 - to get the sum of an expression over a window in the future, define two window functions from current row and then use the subtract to get the difference.
-
 
 
 
