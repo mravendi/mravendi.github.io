@@ -1,5 +1,10 @@
 # Git Cheat Sheet
 
+- view all of your git settings 
+```Git
+$ git config --list --show-origin
+```
+
 - Change commit owner name
 
 Here, you want to change current_name and current_email with new_name and new_email. Run the following command in one line. 
