@@ -14,7 +14,7 @@ and multi-class classification.
 In binary image classification, we want to classify images into two categories. For
 instance, we may want to know if a medical image is normal or malignant. The images
 could be grayscale or colored RGB.
-### a fig here
+![Binary image classification](/images/cv_overview/binary_image_classification.png)*Sample images and their binary labels.*
 
 On the other hand, the goal of multi-class image classification is to assign a label to an image from a fixed set of
 categories. Again, here the assumption is that the image contains one dominant object. 
