@@ -2,20 +2,23 @@
 ## Common Computer Vision Tasks
 
 Computer vision has been disrupted by deep learning and convolutional neural networks. You can now implement many CV algorithms
-using power deep learning libraries such as PyTorch. In this article, we will provide an overview of CV tasks.
+using power deep learning libraries such as PyTorch. In this article, we will provide an overview of some of major CV tasks.
 
 
 ## Image classification
-Image classification (also called image recognition) is probably the first widely used task in computer
-vision. In this task, we assume that images contain one main object and our goal is
-to classify the object. In the context of image recognition, you will encounter: binary classification
+Image classification (also called image recognition) is probably the most widely used task in computer
+vision. In this task, we assume that images contain a main object and we want to automatically 
+classify the object into pre-defined categories. In the context of image recognition, you will encounter with: binary classification
 and multi-class classification. 
 
+### Binary Recognition
 In binary image classification, we want to classify images into two categories. For
-instance, we may want to know if a medical image is normal or malignant. The images
-could be grayscale or colored RGB.
+instance, we may want to know if a medical image is normal or malignant. Thus, you can assign label=0 to a normal image and 
+label=1 to a malignant image. That is why it is called binary classification. In the following, you can see an example of 
+binary image classification for image patches of Histopathologic Cancer .
 ![Binary image classification](/images/cv_overview/binary_image_classification.png)*Sample images and their binary labels.*
 
+### Multi-class Classification
 On the other hand, the goal of multi-class image classification is to assign a label to an image from a fixed set of
 categories. Again, here the assumption is that the image contains one dominant object. 
 For instance, the following screenshot shows a few samples from a dataset with 10 categories. We may
