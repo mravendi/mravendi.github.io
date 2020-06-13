@@ -11,7 +11,7 @@ vision. In this task, we assume that images contain a main object and we want to
 classify the object into pre-defined categories. In the context of image recognition, you will encounter with: binary classification
 and multi-class classification. 
 
-### Binary Recognition
+### Binary Classification
 In binary image classification, we want to classify images into two categories. For
 instance, we may want to know if a medical image is normal or malignant. Thus, you can assign label=0 to a normal image and 
 label=1 to a malignant image. That is why it is called binary classification. In the following, you can see an example of 
