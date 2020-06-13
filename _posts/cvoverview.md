@@ -21,11 +21,16 @@ binary image classification for image patches of Histopathologic Cancer.
 *Sample image patches of Histopathologic Cancer and their binary labels*
 
 ### Multi-class Classification
-On the other hand, the goal of multi-class image classification is to assign a label to an image from a fixed (more than two) set of
+On the other hand, the goal of multi-class image classification is to autmatically assign a label to an image from a fixed (more than two) set of
 categories. Again, here the assumption is that the image contains a dominant object. 
-For instance, the following screenshot shows a few samples from a dataset with 10 categories. We may
-assign label 5 to dogs, label 2 to cars, label 0 to airplanes, and label 9 to trucks. As you may note, there may be more than
-one object in the images, however, we labeled the the images with their dominant objects.
+For instance, the following figure shows a few samples from a dataset with 10 categories.
+
+![MultiClass](/images/cv_overview/multiclass.png)
+
+We may assign label 5 to dogs, label 2 to cars, label 0 to airplanes, and label 9 to trucks. As you may note, there may be more than
+one object in the images, however, the labels correspond to the dominant objects.
+
+
 ### a fig here
 
 ## Object Detection
