@@ -15,8 +15,10 @@ and multi-class classification.
 In binary image classification, we want to classify images into two categories. For
 instance, we may want to know if a medical image is normal or malignant. Thus, you can assign label=0 to a normal image and 
 label=1 to a malignant image. That is why it is called binary classification. In the following, you can see an example of 
-binary image classification for image patches of Histopathologic Cancer .
-![Binary image classification](/images/cv_overview/binary_image_classification.png)*Sample images and their binary labels.*
+binary image classification for image patches of Histopathologic Cancer.
+
+![Binary image classification](/images/cv_overview/binary_image_classification.png)
+*Sample image patches of Histopathologic Cancer and their binary labels*
 
 ### Multi-class Classification
 On the other hand, the goal of multi-class image classification is to assign a label to an image from a fixed set of
