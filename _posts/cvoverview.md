@@ -20,6 +20,9 @@ binary image classification for image patches of Histopathologic Cancer.
 ![Binary image classification](/images/cv_overview/binary_image_classification.png)
 *Sample image patches of Histopathologic Cancer and their binary labels*
 
+Typically, there are thousands of these patches per patient and clinicians have to go through them one by one. Just imagine
+how an automatic tool to quickly label thousands of such images can be beneficial to clinicians.
+
 ### Multi-class Classification
 On the other hand, the goal of multi-class image classification is to autmatically assign a label to an image from a fixed (more than two) set of
 categories. Again, here the assumption is that the image contains a dominant object. 
@@ -30,19 +33,22 @@ For instance, the following figure shows a few samples from a dataset with 10 ca
 We may assign label 5 to dogs, label 2 to cars, label 0 to airplanes, and label 9 to trucks. As you may note, there may be more than
 one object in the images, however, the labels correspond to the dominant objects.
 
+This task has also many applications in industry from autonomous vehicles to medical imaging to automatically identify objects in images.
 
-### a fig here
 
 ## Object Detection
 Object detection is the process of finding locations of specific objects in images. Depending
 on the number of objects in images, we may deal with single-object or multi-object
-detection problems. In single-object detection, we are attempting to
-locate only one object in a given image. The location of the object can be defined by a
-bounding box.
+detection problems. 
 
-As an example, the following screenshot depicts the location of the fovea (a small pit) in an
+### Single-object Detection
+In single-object detection, we are intereseted to find the location of an object in a given image. The location of the object can be defined by a bounding box using four numbers.
+
+As an example, the following image depicts the location of the fovea (a small pit) in an
 eye image using a green bounding box:
-### a fig here
+
+![MultiClass](/images/cv_overview/singleobject.png)
+
 
 On the other hand, multi-object detection is the process of locating and classifying existing objects in an image.
 Identified objects are shown with bounding boxes in the image. There are two main methods for
