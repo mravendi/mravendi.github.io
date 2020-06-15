@@ -23,6 +23,10 @@ binary image classification for image patches of Histopathologic Cancer.
 Typically, there are thousands of these patches per patient and clinicians have to go through them one by one. Just imagine
 how an automatic tool to quickly label thousands of such images can be beneficial to clinicians.
 
+You can learn to implement a binary image classification using PyTorch from Chapter 2 of my book, [PyTorch Computer Vision Cookbook](https://www.amazon.com/PyTorch-Computer-Vision-Cookbook-computer/dp/1838644830/ref=sr_1_2_sspa?dchild=1&keywords=computer+vision+cookbook&qid=1592198268&sr=8-2-spons&psc=1&spLa=ZW5jcnlwdGVkUXVhbGlmaWVyPUEzUEVPNEI1REE4WTBQJmVuY3J5cHRlZElkPUEwODI5NjUxMlQ2T0ZCSEkxNTg4NiZlbmNyeXB0ZWRBZElkPUEwODQ0NjgxQTdaRDhYQjdXWFFQJndpZGdldE5hbWU9c3BfYXRmJmFjdGlvbj1jbGlja1JlZGlyZWN0JmRvTm90TG9nQ2xpY2s9dHJ1ZQ==). The implementation scripts are available from this [link](https://github.com/PacktPublishing/PyTorch-Computer-Vision-Cookbook/tree/master/Chapter02).
+ 
+
+
 ### Multi-class Classification
 On the other hand, the goal of multi-class image classification is to autmatically assign a label to an image from a fixed (more than two) set of
 categories. Again, here the assumption is that the image contains a dominant object. 
@@ -33,7 +37,7 @@ For instance, the following figure shows a few samples from a dataset with 10 ca
 We may assign label 5 to dogs, label 2 to cars, label 0 to airplanes, and label 9 to trucks. As you may note, there may be more than
 one object in the images, however, the labels correspond to the dominant objects.
 
-This task has also many applications in industry from autonomous vehicles to medical imaging to automatically identify objects in images.
+This task has also many applications in industry from autonomous vehicles to medical imaging to automatically identify objects in images. In Chapter 3 of my book, I implemented a multi-class calssification in PyTorch with the scripts available [here](https://github.com/PacktPublishing/PyTorch-Computer-Vision-Cookbook/tree/master/Chapter03). 
 
 
 ## Object Detection
@@ -49,7 +53,11 @@ eye image using a green bounding box:
 
 ![MultiClass](/images/cv_overview/singleobject.png)
 
+You can learn to implement a single-object detection algorithm in PyTroch from Chapter 4 of my book, [PyTorch Computer Vision Cookbook](https://www.amazon.com/PyTorch-Computer-Vision-Cookbook-computer/dp/1838644830/ref=sr_1_2_sspa?dchild=1&keywords=computer+vision+cookbook&qid=1592198268&sr=8-2-spons&psc=1&spLa=ZW5jcnlwdGVkUXVhbGlmaWVyPUEzUEVPNEI1REE4WTBQJmVuY3J5cHRlZElkPUEwODI5NjUxMlQ2T0ZCSEkxNTg4NiZlbmNyeXB0ZWRBZElkPUEwODQ0NjgxQTdaRDhYQjdXWFFQJndpZGdldE5hbWU9c3BfYXRmJmFjdGlvbj1jbGlja1JlZGlyZWN0JmRvTm90TG9nQ2xpY2s9dHJ1ZQ==).
+The implementation codes are avilable [here](https://github.com/PacktPublishing/PyTorch-Computer-Vision-Cookbook/tree/master/Chapter04).
 
+
+### Multi-object Detection
 On the other hand, multi-object detection is the process of locating and classifying existing objects in an image.
 Identified objects are shown with bounding boxes in the image. There are two main methods for
 general object detection: region proposal-based and regression/classification-based. 
