@@ -2,7 +2,9 @@
 ## Common Computer Vision Tasks
 
 Computer vision has been disrupted by deep learning and convolutional neural networks. You can now implement many CV algorithms
-using great deep learning libraries such as PyTorch. In this article, we will provide an overview of some of the important CV tasks. You can find a PyTorch implementation of these tasks in my book.
+using great deep learning libraries such as PyTorch. In this article, we will provide an overview of some of the important CV tasks. You can find a PyTorch implementation of these tasks in my book [PyTorch Computer Vision Cookbook](https://www.amazon.com/PyTorch-Computer-Vision-Cookbook-computer/dp/1838644830/ref=sr_1_2_sspa?dchild=1&keywords=computer+vision+cookbook&qid=1592198268&sr=8-2-spons&psc=1&spLa=ZW5jcnlwdGVkUXVhbGlmaWVyPUEzUEVPNEI1REE4WTBQJmVuY3J5cHRlZElkPUEwODI5NjUxMlQ2T0ZCSEkxNTg4NiZlbmNyeXB0ZWRBZElkPUEwODQ0NjgxQTdaRDhYQjdXWFFQJndpZGdldE5hbWU9c3BfYXRmJmFjdGlvbj1jbGlja1JlZGlyZWN0JmRvTm90TG9nQ2xpY2s9dHJ1ZQ==). 
+
+The implementation scripts are available from this [link](https://github.com/PacktPublishing/PyTorch-Computer-Vision-Cookbook).
 
 
 ## Image classification
