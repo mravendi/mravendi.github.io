@@ -139,3 +139,10 @@ In Chapter 9 of my book, you will learn to develop a GAN to generate new images 
 Images are still and static. There is no motion in static images. The real joy comes from
 motion. And that is how videos come into play. A video is, in fact, a collection of sequential frames or images that are played one after another. This sequence can be seen in the following screenshot:
 
+![MultiClass](/images/cv_overview/video.png)
+
+To get a smooth video, we need to play a certain number of frames per second; otherwise,
+the video will look discontinues. Most of the videos that we deal with in our daily life have
+more than 30 frames per second. So, now, you get the idea. With that scale, a short video
+that's 10 seconds long would be equivalent to 300 images. And this multitude of volume
+makes things complicated.
