@@ -85,7 +85,7 @@ overlay a contour on the image to outline the object boundary. As an example, th
 following screenshot depicts an ultrasound image of a fetus, a binary mask corresponding
 to the fetal head, and the segmentation of the fetal head overlaid on the ultrasound image:
 
-![MultiClass](/images/cv_overview/segmentation.png.png)
+![MultiClass](/images/cv_overview/segmentation.png)
 
 The goal of automatic single-object segmentation will become to predict a binary mask
 given an image. In Chapter 6 of my book, you will learn to implement a deep learning algorithm for single-object segmentation using PyTorch.
@@ -97,7 +97,7 @@ the boundaries of multiple target objects in an image. The boundaries of objects
 object are labeled the same based on a pre-defined labeling. For instance, in the following
 screenshot, you can see a sample image with two types of target: babies and chairs.
 
-![MultiClass](/images/cv_overview/msegmentation.png.png)
+![MultiClass](/images/cv_overview/msegmentation.png)
 
 The corresponding segmentation mask is shown in the middle of the screenshot. As we can see,
 the pixels belonging to the babies and chairs are labeled differently and colored in yellow
@@ -108,21 +108,31 @@ an image such that each pixel in the image is labeled based on its object class.
 Chapter 7 of my book, you will learn to develop an algorithm to automatically segment images with multiple objects using PyTorch. 
 
 
-
 ## Style Transfer
-In neural style transfer, we take a content image and a style image. Then, we generate an
-image to have the content of the content image and the artistic style of the style image.
+You want to do something fun with images. Try neural style tranfer. In neural style transfer, we take a content image and a style image. Then, we generate an image to have the content of the content image and the artistic style of the style image.
 By using the masterpieces of great artists as the style image, you can 
 generate very interesting images.
-### a fig here
+
+As an example, check out the following figure:
+![MultiClass](/images/cv_overview/styletransfer.png)
+
+The image on the left is converted to the image on the right using an style image (middle).
+In Chapter 8 of my book, you can learn to implement the neural style transfer algorithm using PyTorch. 
+
 
 ## GANs
-A GAN is a framework that's used to generate new data by learning the distribution of data. In the context of image generation, the generator generates fake data, when given noise as
+You want more fun with images? Try GANs. A GAN is a framework that's used to generate new data by learning the distribution of data. 
+The following figure shows a block diagram of a GAN for image generation.
+
+![MultiClass](/images/cv_overview/gan.png)
+
+The generator generates fake data, when given noise as
 input, and the discriminator classifies real images from fake images. During training, the
 generator and the discriminator compete with each other in a game and as a result, get
 better at their jobs. The generator tries to generate better-looking images to fool the
 discriminator and the discriminator tries to get better at identifying real images from fake
 images.
-### a fig here
+
+
 
 
