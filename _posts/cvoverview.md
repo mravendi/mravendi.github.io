@@ -28,8 +28,7 @@ You can learn to implement a binary image classification using PyTorch from Chap
 
 
 ### Multi-class Classification
-On the other hand, the goal of multi-class image classification is to autmatically assign a label to an image from a fixed (more than two) set of
-categories. Again, here the assumption is that the image contains a dominant object. 
+On the other hand, the goal of multi-class image classification is to autmatically assign a label to an image from a fixed (more than two) set of categories. Again, here the assumption is that the image contains a dominant object. 
 For instance, the following figure shows a few samples from a dataset with 10 categories.
 
 ![MultiClass](/images/cv_overview/multiclass.png)
@@ -59,38 +58,56 @@ The implementation codes are avilable [here](https://github.com/PacktPublishing/
 
 ### Multi-object Detection
 On the other hand, multi-object detection is the process of locating and classifying existing objects in an image.
-Identified objects are shown with bounding boxes in the image. There are two main methods for
-general object detection: region proposal-based and regression/classification-based. 
-### a fig here
+Identified objects are shown with bounding boxes in the image as shown in the following figure. 
+
+
+![MultiClass](/images/cv_overview/multiObjectDetection.png)
+
+As you can see, each object is identified and labeled with a getegory label and located by a bounding box.
+
+Two methods for general object detection include: region proposal-based and regression/classification-based. In Chapter 5 of my book [PyTorch Computer Vision Cookbook](https://www.amazon.com/PyTorch-Computer-Vision-Cookbook-computer/dp/1838644830/ref=sr_1_2_sspa?dchild=1&keywords=computer+vision+cookbook&qid=1592198268&sr=8-2-spons&psc=1&spLa=ZW5jcnlwdGVkUXVhbGlmaWVyPUEzUEVPNEI1REE4WTBQJmVuY3J5cHRlZElkPUEwODI5NjUxMlQ2T0ZCSEkxNTg4NiZlbmNyeXB0ZWRBZElkPUEwODQ0NjgxQTdaRDhYQjdXWFFQJndpZGdldE5hbWU9c3BfYXRmJmFjdGlvbj1jbGlja1JlZGlyZWN0JmRvTm90TG9nQ2xpY2s9dHJ1ZQ==), you can find an implementation of regression/classification-based object detection using PyTorch.
+
 
 
 ## Image Segmentation
 Object segmentation is the process of finding the boundaries of target objects in
 images. There are many applications for segmenting objects in images. As an example, by
 outlining anatomical objects in medical images, clinical experts can learn useful information
-about patients' conditions.
+about patients.
 
 Depending on the number of objects in images, we can deal with single-object or multiobject
-segmentation tasks. In single-object segmentation, we are
-interested in automatically outlining the boundary of one target object in an image.
+segmentation tasks. 
 
+### Single-object Segmentation 
+In single-object segmentation, we are interested in automatically outlining the boundary of one target object in an image.
 The object boundary is usually defined by a binary mask. From the binary mask, we can
 overlay a contour on the image to outline the object boundary. As an example, the
 following screenshot depicts an ultrasound image of a fetus, a binary mask corresponding
 to the fetal head, and the segmentation of the fetal head overlaid on the ultrasound image:
-### a fig here
 
+![MultiClass](/images/cv_overview/segmentation.png.png)
+
+The goal of automatic single-object segmentation will become to predict a binary mask
+given an image. In Chapter 6 of my book, you will learn to implement a deep learning algorithm for single-object segmentation using PyTorch.
+
+
+### Multi-object Segmentation
 On the other hand, in multi-object segmentation, we are interested in automatically outlining
-the boundaries of multiple target objects in an image.
-
-The boundaries of objects in an image are usually defined by a segmentation mask that's
-the same size as the image. In the segmentation mask, all the pixels that belong to a target
+the boundaries of multiple target objects in an image. The boundaries of objects in an image are usually defined by a segmentation mask that's the same size as the image. In the segmentation mask, all the pixels that belong to a target
 object are labeled the same based on a pre-defined labeling. For instance, in the following
-screenshot, you can see a sample image with two types of target: babies and chairs. The
-corresponding segmentation mask is shown in the middle of the screenshot. As we can see,
+screenshot, you can see a sample image with two types of target: babies and chairs.
+
+![MultiClass](/images/cv_overview/msegmentation.png.png)
+
+The corresponding segmentation mask is shown in the middle of the screenshot. As we can see,
 the pixels belonging to the babies and chairs are labeled differently and colored in yellow
 and green, respectively.
-### a fig here
+
+The goal of multiple-object segmentation will become to predict a segmentation mask given
+an image such that each pixel in the image is labeled based on its object class. In 
+Chapter 7 of my book, you will learn to develop an algorithm to automatically segment images with multiple objects using PyTorch. 
+
+
 
 ## Style Transfer
 In neural style transfer, we take a content image and a style image. Then, we generate an
