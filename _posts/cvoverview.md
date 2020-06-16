@@ -135,4 +135,7 @@ images.
 
 In Chapter 9 of my book, you will learn to develop a GAN to generate new images using PyTorch.
 
+## Video Classification
+Images are still and static. There is no motion in static images. The real joy comes from
+motion. And that is how videos come into play. A video is, in fact, a collection of sequential frames or images that are played one after another. This sequence can be seen in the following screenshot:
 
