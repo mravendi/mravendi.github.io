@@ -2,20 +2,18 @@
 ## Common Computer Vision Tasks
 
 Computer vision has been disrupted by deep learning and convolutional neural networks. You can now implement many CV algorithms
-using power deep learning libraries such as PyTorch. In this article, we will provide an overview of some of major CV tasks.
+using great deep learning libraries such as PyTorch. In this article, we will provide an overview of some of the important CV tasks. You can find a PyTorch implementation of these tasks in my book.
 
 
 ## Image classification
 Image classification (also called image recognition) is probably the most widely used task in computer
-vision. In this task, we assume that images contain a main object and we want to automatically 
-classify the object into pre-defined categories. In the context of image recognition, you will encounter with: binary classification
+vision. In this task, we assume that images contain a main object and we want to automatically classify the object into pre-defined categories. In the context of image recognition, you will find the binary classification
 and multi-class classification. 
 
 ### Binary Classification
 In binary image classification, we want to classify images into two categories. For
 instance, we may want to know if a medical image is normal or malignant. Thus, you can assign label=0 to a normal image and 
-label=1 to a malignant image. That is why it is called binary classification. In the following, you can see an example of 
-binary image classification for image patches of Histopathologic Cancer.
+label=1 to a malignant image. That is why it is called a binary classification. In the following, you can see an example of binary image classification for image patches of Histopathologic Cancer.
 
 ![Binary image classification](/images/cv_overview/binary_image_classification.png)
 *Sample image patches of Histopathologic Cancer and their binary labels*
@@ -28,7 +26,7 @@ You can learn to implement a binary image classification using PyTorch from Chap
 
 
 ### Multi-class Classification
-On the other hand, the goal of multi-class image classification is to autmatically assign a label to an image from a fixed (more than two) set of categories. Again, here the assumption is that the image contains a dominant object. 
+On the other hand, the goal of multi-class image classification is to automatically assign a label to an image from a fixed (more than two) set of categories. Again, here the assumption is that the image contains a dominant object. 
 For instance, the following figure shows a few samples from a dataset with 10 categories.
 
 ![MultiClass](/images/cv_overview/multiclass.png)
@@ -36,7 +34,7 @@ For instance, the following figure shows a few samples from a dataset with 10 ca
 We may assign label 5 to dogs, label 2 to cars, label 0 to airplanes, and label 9 to trucks. As you may note, there may be more than
 one object in the images, however, the labels correspond to the dominant objects.
 
-This task has also many applications in industry from autonomous vehicles to medical imaging to automatically identify objects in images. In Chapter 3 of my book, I implemented a multi-class calssification in PyTorch with the scripts available [here](https://github.com/PacktPublishing/PyTorch-Computer-Vision-Cookbook/tree/master/Chapter03). 
+This task has also many applications in the industry from autonomous vehicles to medical imaging to automatically identify objects in images. In Chapter 3 of my book, I implemented a multi-class classification in PyTorch with the scripts available [here](https://github.com/PacktPublishing/PyTorch-Computer-Vision-Cookbook/tree/master/Chapter03). 
 
 
 ## Object Detection
@@ -45,7 +43,7 @@ on the number of objects in images, we may deal with single-object or multi-obje
 detection problems. 
 
 ### Single-object Detection
-In single-object detection, we are intereseted to find the location of an object in a given image. The location of the object can be defined by a bounding box using four numbers.
+In single-object detection, we are interested to find the location of an object in a given image. The location of the object can be defined by a bounding box using four numbers.
 
 As an example, the following image depicts the location of the fovea (a small pit) in an
 eye image using a green bounding box:
@@ -63,9 +61,9 @@ Identified objects are shown with bounding boxes in the image as shown in the fo
 
 ![MultiClass](/images/cv_overview/multiObjectDetection.png)
 
-As you can see, each object is identified and labeled with a getegory label and located by a bounding box.
+As you can see, each object is identified and labeled with a category label and located by a bounding box.
 
-Two methods for general object detection include: region proposal-based and regression/classification-based. In Chapter 5 of my book [PyTorch Computer Vision Cookbook](https://www.amazon.com/PyTorch-Computer-Vision-Cookbook-computer/dp/1838644830/ref=sr_1_2_sspa?dchild=1&keywords=computer+vision+cookbook&qid=1592198268&sr=8-2-spons&psc=1&spLa=ZW5jcnlwdGVkUXVhbGlmaWVyPUEzUEVPNEI1REE4WTBQJmVuY3J5cHRlZElkPUEwODI5NjUxMlQ2T0ZCSEkxNTg4NiZlbmNyeXB0ZWRBZElkPUEwODQ0NjgxQTdaRDhYQjdXWFFQJndpZGdldE5hbWU9c3BfYXRmJmFjdGlvbj1jbGlja1JlZGlyZWN0JmRvTm90TG9nQ2xpY2s9dHJ1ZQ==), you can find an implementation of regression/classification-based object detection using PyTorch.
+Two methods for general object detection include region proposal-based and regression/classification-based. In Chapter 5 of my book [PyTorch Computer Vision Cookbook](https://www.amazon.com/PyTorch-Computer-Vision-Cookbook-computer/dp/1838644830/ref=sr_1_2_sspa?dchild=1&keywords=computer+vision+cookbook&qid=1592198268&sr=8-2-spons&psc=1&spLa=ZW5jcnlwdGVkUXVhbGlmaWVyPUEzUEVPNEI1REE4WTBQJmVuY3J5cHRlZElkPUEwODI5NjUxMlQ2T0ZCSEkxNTg4NiZlbmNyeXB0ZWRBZElkPUEwODQ0NjgxQTdaRDhYQjdXWFFQJndpZGdldE5hbWU9c3BfYXRmJmFjdGlvbj1jbGlja1JlZGlyZWN0JmRvTm90TG9nQ2xpY2s9dHJ1ZQ==), you can find an implementation of regression/classification-based object detection using PyTorch.
 
 
 
@@ -94,8 +92,8 @@ given an image. In Chapter 6 of my book, you will learn to implement a deep lear
 ### Multi-object Segmentation
 On the other hand, in multi-object segmentation, we are interested in automatically outlining
 the boundaries of multiple target objects in an image. The boundaries of objects in an image are usually defined by a segmentation mask that's the same size as the image. In the segmentation mask, all the pixels that belong to a target
-object are labeled the same based on a pre-defined labeling. For instance, in the following
-screenshot, you can see a sample image with two types of target: babies and chairs.
+object are labeled the same based on pre-defined labeling. For instance, in the following
+screenshot, you can see a sample image with two types of targets: babies and chairs.
 
 ![MultiClass](/images/cv_overview/msegmentation.png)
 
@@ -109,24 +107,24 @@ Chapter 7 of my book, you will learn to develop an algorithm to automatically se
 
 
 ## Style Transfer
-You want to do something fun with images. Try neural style tranfer. In neural style transfer, we take a content image and a style image. Then, we generate an image to have the content of the content image and the artistic style of the style image.
+You want to do something fun with images. Try neural style transfer. In neural style transfer, we take a content image and a style image. Then, we generate an image to have the content of the content image and the artistic style of the style image.
 By using the masterpieces of great artists as the style image, you can 
 generate very interesting images.
 
 As an example, check out the following figure:
 ![MultiClass](/images/cv_overview/styletransfer.png)
 
-The image on the left is converted to the image on the right using an style image (middle).
+The image on the left is converted to the image on the right using a style image (middle).
 In Chapter 8 of my book, you can learn to implement the neural style transfer algorithm using PyTorch. 
 
 
 ## GANs
-You want more fun with images? Try GANs. A GAN is a framework that's used to generate new data by learning the distribution of data. 
+Do you want more fun with images? Try GANs. A GAN is a framework that's used to generate new data by learning the distribution of data. 
 The following figure shows a block diagram of a GAN for image generation.
 
 ![MultiClass](/images/cv_overview/gan.png)
 
-The generator generates fake data, when given noise as
+The generator generates fake data when given noise as
 input, and the discriminator classifies real images from fake images. During training, the
 generator and the discriminator compete with each other in a game and as a result, get
 better at their jobs. The generator tries to generate better-looking images to fool the
