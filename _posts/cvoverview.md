@@ -133,6 +133,6 @@ better at their jobs. The generator tries to generate better-looking images to f
 discriminator and the discriminator tries to get better at identifying real images from fake
 images.
 
-
+In Chapter 9 of my book, you will learn to develop a GAN to generate new images using PyTorch.
 
 
