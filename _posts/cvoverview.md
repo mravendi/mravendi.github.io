@@ -5,6 +5,9 @@ Computer vision (CV) has been disrupted by deep learning and convolutional neura
 
 The implementation scripts are available in this [link](https://github.com/PacktPublishing/PyTorch-Computer-Vision-Cookbook).
 
+The outline of this post is as the following:
+1. TOC
+{:toc}
 
 ## Image classification
 Image classification (also called image recognition) is probably the most widely used task in computer
@@ -140,8 +143,9 @@ motion. And that is how videos come into play. A video is, in fact, a collection
 
 ![MultiClass](/images/cv_overview/video.png)
 
-To get a smooth video, we need to play a certain number of frames per second; otherwise,
-the video will look discontinues. Most of the videos that we deal with in our daily life have
-more than 30 frames per second. So, now, you get the idea. With that scale, a short video
-that's 10 seconds long would be equivalent to 300 images. And this multitude of volume
-makes things complicated.
+There are many applications that we can use for video processing.
+Some of these applications are closely related to the image processing applications that
+we've already covered in previous sections. For instance, classifying videos is useful if you want to know what kind of
+activity is happening in a video. In Chapter 10 of my book, you can learn to build a video classification model using PyTorch.
+
+
