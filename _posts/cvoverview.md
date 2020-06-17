@@ -125,7 +125,7 @@ In Chapter 9 of my book, you will learn to develop a GAN to generate new images 
 
 ## Video Classification
 Images are still and static. There is no motion in static images. The real joy comes from
-the motion. And that is how videos come into play. A video is, in fact, a collection of sequential frames or images that are played one after another. Check out a short clip of Matrix (the movie) in the next figure.
+the motion. And that is how videos come into play. A video is, in fact, a collection of sequential frames or images that are played one after another. Check out a short clip of Matrix (the movie) in the following.
 
 ![MultiClass](/images/cv_overview/video.png)
 
