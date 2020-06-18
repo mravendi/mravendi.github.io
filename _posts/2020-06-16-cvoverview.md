@@ -1,5 +1,5 @@
 
-## An overview Deep Learning for Major Computer Vision Tasks 
+## An overview of Deep Learning for Major Computer Vision Tasks 
 
 Computer vision (CV) has been disrupted by deep learning and convolutional neural networks(CNN) in recent years. You can now implement many CV algorithms pretty quickly using deep learning libraries such as PyTorch, Tensorflow, and Keras. In this post, I will provide an overview of major CV tasks and applications. You can find more details on how to solve such probles using deep learning and PyTorch in my book [PyTorch Computer Vision Cookbook](https://www.amazon.com/PyTorch-Computer-Vision-Cookbook-computer/dp/1838644830/ref=sr_1_2_sspa?dchild=1&keywords=computer+vision+cookbook&qid=1592198268&sr=8-2-spons&psc=1&spLa=ZW5jcnlwdGVkUXVhbGlmaWVyPUEzUEVPNEI1REE4WTBQJmVuY3J5cHRlZElkPUEwODI5NjUxMlQ2T0ZCSEkxNTg4NiZlbmNyeXB0ZWRBZElkPUEwODQ0NjgxQTdaRDhYQjdXWFFQJndpZGdldE5hbWU9c3BfYXRmJmFjdGlvbj1jbGlja1JlZGlyZWN0JmRvTm90TG9nQ2xpY2s9dHJ1ZQ==). All implementation scripts of the book are also available in this [link](https://github.com/PacktPublishing/PyTorch-Computer-Vision-Cookbook).
 
