@@ -1,9 +1,7 @@
 
-## An overview of Major Computer Vision Applications
+## An overview Deep Learning for Major Computer Vision Tasks 
 
-Computer vision (CV) has been disrupted by deep learning and convolutional neural networks(CNN) in recent years. You can now implement many CV algorithms pretty quickly using deep learning libraries such as PyTorch, Tensorflow, and Keras. In this post, I will provide an overview of major CV tasks and applications. You can find PyTorch implementations of these tasks with step-by-step explanations in my book [PyTorch Computer Vision Cookbook](https://www.amazon.com/PyTorch-Computer-Vision-Cookbook-computer/dp/1838644830/ref=sr_1_2_sspa?dchild=1&keywords=computer+vision+cookbook&qid=1592198268&sr=8-2-spons&psc=1&spLa=ZW5jcnlwdGVkUXVhbGlmaWVyPUEzUEVPNEI1REE4WTBQJmVuY3J5cHRlZElkPUEwODI5NjUxMlQ2T0ZCSEkxNTg4NiZlbmNyeXB0ZWRBZElkPUEwODQ0NjgxQTdaRDhYQjdXWFFQJndpZGdldE5hbWU9c3BfYXRmJmFjdGlvbj1jbGlja1JlZGlyZWN0JmRvTm90TG9nQ2xpY2s9dHJ1ZQ==). 
-
-The implementation scripts are available in this [link](https://github.com/PacktPublishing/PyTorch-Computer-Vision-Cookbook).
+Computer vision (CV) has been disrupted by deep learning and convolutional neural networks(CNN) in recent years. You can now implement many CV algorithms pretty quickly using deep learning libraries such as PyTorch, Tensorflow, and Keras. In this post, I will provide an overview of major CV tasks and applications. You can find more details on how to solve such probles using deep learning and PyTorch in my book [PyTorch Computer Vision Cookbook](https://www.amazon.com/PyTorch-Computer-Vision-Cookbook-computer/dp/1838644830/ref=sr_1_2_sspa?dchild=1&keywords=computer+vision+cookbook&qid=1592198268&sr=8-2-spons&psc=1&spLa=ZW5jcnlwdGVkUXVhbGlmaWVyPUEzUEVPNEI1REE4WTBQJmVuY3J5cHRlZElkPUEwODI5NjUxMlQ2T0ZCSEkxNTg4NiZlbmNyeXB0ZWRBZElkPUEwODQ0NjgxQTdaRDhYQjdXWFFQJndpZGdldE5hbWU9c3BfYXRmJmFjdGlvbj1jbGlja1JlZGlyZWN0JmRvTm90TG9nQ2xpY2s9dHJ1ZQ==). All implementation scripts of the book are also available in this [link](https://github.com/PacktPublishing/PyTorch-Computer-Vision-Cookbook).
 
 The outline of this post is as the following:
 1. TOC
@@ -25,7 +23,12 @@ label=1 to a malignant image. That is why it is called the binary classification
 Typically, there are thousands of these patches per patient and clinicians have to go through them one by one. Just imagine
 how an automatic tool to quickly label thousands of such images can be beneficial to clinicians.
 
-You can learn to implement a binary image classification using PyTorch in Chapter 2 of my book.
+Deep learning models based on CNN are currently state-of-the-art to solve such problems. A block diagram of a CNN model is shown in the following figure.
+
+![Binary image classification](/images/cv_overview/cnnmodel.png)
+
+
+You can learn to train and develop a binary image classification using PyTorch and deep learning in Chapter 2 of my book.
  
 
 ### Multi-class Classification
@@ -37,7 +40,7 @@ For instance, the following figure shows a few samples from a dataset with 10 ca
 We may assign label 5 to dogs, label 2 to cars, label 0 to airplanes, and label 9 to trucks. As you may note, there may be more than
 one object in the images, however, the labels correspond to the dominant objects.
 
-This task has also many applications in the industry, from autonomous vehicles to medical imaging, to automatically identify objects in images. In Chapter 3 of my book, you can learn to develop a multi-class classification model in PyTorch.
+This task has also many applications in the industry, from autonomous vehicles to medical imaging, to automatically identify objects in images. In Chapter 3 of my book, you can learn to develop a pre-trained resnet18 model for multi-class image classification using PyTorch.
 
 ## Object Detection
 Object detection is the process of finding locations of specific objects in images. Similar to image classification, depending on the number of objects in images, we may deal with single-object or multi-object
@@ -50,7 +53,10 @@ As an example, the following image depicts the location of the fovea (a small pi
 
 ![MultiClass](/images/cv_overview/singleobject.png)
 
-You can learn to implement a single-object detection model in PyTorch from Chapter 4 of my book.
+This task can be formulated as a regression problem to predict two/four numbers correspondingto the bounding box using a CNN model, as shown in the following figure.
+![MultiClass](/images/cv_overview/cnndetection.png)
+
+You can learn to develop a single-object detection model in PyTorch from Chapter 4 of my book.
 
 
 ### Multi-object Detection
@@ -61,7 +67,11 @@ Identified objects are shown with bounding boxes in the image, as shown in the f
 
 As you can see, each object is identified and labeled with a category label and located by a bounding box.
 
-Two methods for general object detection include region proposal-based and regression/classification-based. In Chapter 5 of my book, you can learn to develop a regression/classification-based object detection algorithm using PyTorch.
+Two methods for general object detection include region proposal-based and regression/classification-based. A popular regression/classification-based approach named YOLOv3 is shown in the following figure.
+
+![MultiClass](/images/cv_overview/yolov3.png)
+
+In Chapter 5 of my book, you can learn to develop the YOLOv3 algorithm for object detection using PyTorch.
 
 
 ## Image Segmentation
@@ -78,7 +88,11 @@ to the fetal head, and the segmentation of the fetal head overlaid on the ultras
 ![MultiClass](/images/cv_overview/segmentation.png)
 
 The goal of automatic single-object segmentation will be to predict a binary mask
-given an image. In Chapter 6 of my book, you will learn to implement a deep learning algorithm for single-object segmentation using PyTorch.
+given an image. Again, CNN models can be designed in the form of encoder-decoder to solve this task. A block diagram of an encoder-decoder is shown in the following figure.
+
+![MultiClass](/images/cv_overview/encodedecode.png)
+
+In Chapter 6 of my book, you will learn to implement an encoder-decoder architecure for single-object segmentation using PyTorch.
 
 
 ### Multi-object Segmentation
@@ -107,6 +121,13 @@ As an example, check out the following figure:
 ![MultiClass](/images/cv_overview/styletransfer.png)
 
 The image on the left is converted to the image on the right using a style image (middle).
+
+In the style transfer algorithm, we keep the model parameters fixed and instead update
+the input to the model during training. This twist is the intuition behind the neural style
+transfer algorithm. A block diagram of the style transfer algorithm is shown in the following figure.
+
+![MultiClass](/images/cv_overview/style.png)
+
 In Chapter 8 of my book, you can learn to implement the neural style transfer algorithm using PyTorch. 
 
 
@@ -129,6 +150,10 @@ the motion. And that is how videos come into play. A video is, in fact, a collec
 
 ![MultiClass](/images/cv_overview/video.png)
 
-Similar to image classification, you can think of video classification. Due to a large number of frames in videos, the task is daunting but doable with the help of deep learning and PyTorch. Video classification is about understanding the activity happening in videos. In Chapter 10 of my book, you can learn to build a video classification algorithm using PyTorch.
+Similar to image classification, you can think of video classification. Due to a large number of frames in videos, the task is daunting but doable with the help of deep learning and PyTorch. A block diagram of an RNN-based video classification is shown in the following figure.
+
+![MultiClass](/images/cv_overview/videornn.png)
+
+In Chapter 10 of my book, you can learn to build a video classification algorithm using PyTorch.
 
 
