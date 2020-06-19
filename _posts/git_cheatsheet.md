@@ -30,14 +30,14 @@ git push --force origin master
 ```
 
 
-- show origin
+- show origin/remote
 ```
-$ git origin -v
+$ git remote -v
 ```
 
 - remove git origin
 ```
-$ git remote rm origin
+$ git remote rm old_origin
 ```
 
 - set a new origin
