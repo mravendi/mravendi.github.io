@@ -6,8 +6,7 @@
 # https://learn-the-web.algonquindesign.ca/topics/markdown-yaml-cheat-sheet/#yaml
 # https://learnxinyminutes.com/docs/yaml/
 
-plugins:
-  - jekyll-feed
+
 title: RANDOM DATA SCIENCE BLOG
 description: Random topics in AI, ML/DL and Data Science!
 github_username: mravendi
