@@ -72,7 +72,15 @@ you stop the training process to avoid overfitting.
 
 ### Storing Weights During Training
 Another technique to avoid overfitting, is to avoid storing/deploying an overfitted model. Thus, a good practive is that after an epoch, store the updated weights only if 
-there is an improvement in the validation metrics. 
+there is an improvement in the validation metrics. You can do this in PyTorch using the following snippet:
+
+```python
+if val_loss < best_loss:
+  best_loss = val_loss
+  best_model_wts = copy.deepcopy(model.state_dict())
+
+torch.save(model.state_dict(), path2weights)
+```
 
 ### Learning Rate Schedules
 When training an ML, it is normal to see that the loss function drops quickly and then stops at a certain point or plateus. In such situations, changing the learning rate
