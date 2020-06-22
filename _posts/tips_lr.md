@@ -36,7 +36,29 @@ torch.manual_seed(seed)
 ### Learning Rates
 Learning rate is one of the most improtant hyper-parameters in ML experiments. When we say hyper-parameter, that means you need to try to find its value by experimenting.
 Nevertheless, there are rules of thumbs and previous reported values in the literature that you can start with. 
-For instance, if you are training a CNN model from scratch with the weights randomly initialized, you need a bigger learning rate (in the order of 1e-4) compared to when you are fine-tunning a model on a pre-trained model (in the order of 10e-6). For most CNN models, ``` lr= 3e-4``` works best for models trained from scratch. 
+For instance, if you are training a CNN model from scratch with the weights randomly initialized, you need a bigger learning rate (in the order of 1e-4) compared to when you are fine-tunning a model on a pre-trained model (in the order of 10e-6). For most CNN models, ``` lr= 3e-4``` works best for models trained from scratch. In PyTorch it is easy to
+set or change the learning rate when defining the optimizer.
+
+```python
+from torch import optim
+opt = optim.Adam(cnn_model.parameters(), lr=3e-4)
+```
+
+To read the current value of the learning rate, you can do:
+
+```python
+
+def get_lr(opt):
+  for param_group in opt.param_groups:
+    return param_group['lr']
+
+current_lr=get_lr(opt)
+print('current lr={}'.format(current_lr))
+current lr=0.0003
+```
+
+
+
 
 ### Early stopping
 Perhaps you are familiar with overfitting. It happens when your models are over-trained and thus cannot generalize beyond the training dataset. You can easily see this 
@@ -56,6 +78,18 @@ there is an improvement in the validation metrics.
 When training an ML, it is normal to see that the loss function drops quickly and then stops at a certain point or plateus. In such situations, changing the learning rate
 can help the model to scape the plateu and continoue with it decline. In order to change the learning rate, learning rate schedules have been used either manually or automatically to take care of the learning rate. The process is that you monitor the loss value on the validation data and once it reaches a plateu, we usually descrease 
 the learning rate by a factor of 2. There are more varieties of learning rates that you can find on PyTorch website or real examples in my [book](https://www.amazon.com/PyTorch-Computer-Vision-Cookbook-computer/dp/1838644830/ref=sr_1_1_sspa?crid=357W25TVH92GN&dchild=1&keywords=pytorch+computer+vision+cookbook&qid=1592800424&sprefix=pytocrch+comp%2Caps%2C201&sr=8-1-spons&psc=1&spLa=ZW5jcnlwdGVkUXVhbGlmaWVyPUExTVlaS1VQVTQ5TUpMJmVuY3J5cHRlZElkPUEwMDc5NzE1U0xQVktER1FOVkMwJmVuY3J5cHRlZEFkSWQ9QTA4NDQ2ODFBN1pEOFhCN1dYUVAmd2lkZ2V0TmFtZT1zcF9hdGYmYWN0aW9uPWNsaWNrUmVkaXJlY3QmZG9Ob3RMb2dDbGljaz10cnVl).
+
+In PyTorch it is very easy to define a learning rate schedule. Here is a snippet:
+
+```python
+from torch.optim.lr_scheduler import ReduceLROnPlateau
+
+lr_scheduler = ReduceLROnPlateau(opt, mode='min',factor=0.5, patience=20,verbose=1)
+```
+The above learning rate schedule would wait for ```patience=20``` epochs before halving the learning rate.
+
+
+
 
 
 
