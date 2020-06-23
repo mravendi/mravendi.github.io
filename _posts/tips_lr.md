@@ -97,9 +97,27 @@ lr_scheduler = ReduceLROnPlateau(opt, mode='min',factor=0.5, patience=20,verbose
 The above learning rate schedule would wait for ```patience=20``` epochs before halving the learning rate.
 
 
+### Data Augmentation
+Data augmentation is another critical step in training ML  algorithms, especially for small datasets to reduce/avoid overfitting. It can help 
+to reduce the overfitting by artificially enlarging your training dataset. 
+Even if you think that your training dataset is big enough, data augmentation can help with the robustness of your models. 
+The process of data augmentation consists of randomly transforming the original data to get a new data. 
+You can use ready-to-use Python packages to perform data augmentation on-the-fly. 
 
+For instance, in image classification/detection tasks, you can randomly flip images horizontally as seen in the following figure:
 
+![dataaugmentation](/images/tipstricks/dataaug.png)
 
+Here is an example of how to do data augmentation using torchvision module of PyTorch:
+
+```python
+train_transformer = transforms.Compose([
+                              transforms.RandomHorizontalFlip(p=0.5),
+                              transforms.RandomVerticalFlip(p=0.5),
+                              transforms.RandomRotation(45),
+                              transforms.RandomResizedCrop(96,scale=(0.8,1.0),ratio=(1.0,1.0)),
+                              transforms.ToTensor()])
+```
 
 
 
