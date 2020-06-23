@@ -119,8 +119,17 @@ train_transformer = transforms.Compose([
                               transforms.ToTensor()])
 ```
 
+### Pre-Trained Models
+One of the successful techniques in developing ML models is the use of pre-trained models and transfer learning. 
 
+### Data Normalization
+Data normalization is another pre-processing step that you can perform on-the-fly together with data augmentation. Usually, we perform multiple
+steps of data augmentation in series on a batch of data and then normalize the final outcome using one of the common techniques such as zero-mean unit variance, scale to the range of [0,1], etc. The point of data normalization is to bring the range of your data to a standard range to help with the training. A key point to consider is when
+using pre-trained models for your tasks by fine-tunning on your dataset. In such a case, you should follow the normalization approach of the pre-trained models.
 
+### Model Deployment
+After training your ML models, you certainly want to deploy them for an application. One the key factors to keep in mind is that to perform the pre-processing steps used 
+during training. 
 
 
 
