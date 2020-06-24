@@ -1,20 +1,34 @@
 # ML Tips and Tricks
 
-The machine learning and data science fields are based on some fundamentals and many tips and tricks. 
+The machine learning and data science fields are based on some fundamentals and many techniques. 
 In this post, I will share some of the important techniques that can help improve the performance of your ML models.
 
 
 ## Basic Setup
-Typically, to develop an ML/DL algorithm using SGD, the following ingredients are required:
+The focus of this post is about developing deep learning models. However, the techniques introduced are applicable to other
+ML algorithms.
+We assume to have the training, validation, and
+test datasets. We use the training dataset to train the model. The validation dataset is used to track
+the model's performance during training. We use the test dataset for the final evaluation of
+the model. The target values of the test dataset are usually hidden from us. 
 
-- Training data (inputs and targets)
-- a model 
-- an objective function
-- an optimizer
+To develop our data-driven models, the following elements are required:
+- Training data
+- The model 
+- The loss function 
+- The optimizer
 
 You can see the interaction between these elements in the following diagram:
 ![trainingloop](https://github.com/mravendi/mravendi.github.io/blob/master/images/tipstricks/trainingloop.png)
 
+
+The training process for deep learning algorithms is an iterative process. In each iteration,
+we select a batch of training data. Then, we feed the data to the model to get the model
+output. After that, we calculate the loss value. Next, we compute the gradients of the loss
+function with respect to the model parameters (also known as the weights). Finally, the
+optimizer updates the parameters based on the gradients. This loop continues. We also use
+a validation dataset to track the model's performance during training. We stop the training
+process when the performance plateaus.
 
 
 ### Fixing Random Seed Points
