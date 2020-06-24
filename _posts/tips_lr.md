@@ -13,7 +13,7 @@ the model's performance during training. We use the test dataset for the final e
 the model. The target values of the test dataset are usually hidden from us. 
 
 To develop our data-driven models, the following elements are required:
-- Training data
+- Training data (input and target)
 - The model 
 - The loss function 
 - The optimizer
@@ -22,18 +22,17 @@ You can see the interaction between these elements in the following diagram:
 ![trainingloop](https://github.com/mravendi/mravendi.github.io/blob/master/images/tipstricks/trainingloop.png)
 
 
-The training process for deep learning algorithms is an iterative process. In each iteration,
-we select a batch of training data. Then, we feed the data to the model to get the model
-output. After that, we calculate the loss value. Next, we compute the gradients of the loss
-function with respect to the model parameters (also known as the weights). Finally, the
+In each iteration of the training loop, we select a batch of training data. Then, we feed the data to the model to get the model
+predictions. After that, we calculate the loss value. Next, we compute the gradients of the loss
+function with respect to the model parameters. Finally, the
 optimizer updates the parameters based on the gradients. This loop continues. We also use
-a validation dataset to track the model's performance during training. We stop the training
-process when the performance plateaus.
+a validation dataset to track the model's performance during training.
+
 
 
 ### Fixing Random Seed Points
 One of the simple yet important steps when building ML models is to fix the random seed point in your ML experiments. In a typical ML experiment, we perform multiple steps that
-rely on random distributions such as: data shuffling, data spliting, weight initialization, etc. Due to these randomness, we may see different results with the same set of hyper-parameters if we do not fix the random seed. Therefore, for the sake of reproducibility and making better sounding colclusions when doing ML experiments, try to add simple lines of codes right in the beggining of your scripts.
+rely on random distributions such as: data shuffling, data spliting, weight initialization, etc. Due to these randomness, we may see different results with the same set of hyper-parameters if we do not fix the random seed. Therefore, for the sake of reproducibility and making better sounding colclusions when doing ML experiments, you can add the following snippet right in the beggining of your scripts.
 
 ```python
 import numpy as np
