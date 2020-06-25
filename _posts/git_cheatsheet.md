@@ -30,20 +30,56 @@ git push --force origin master
 ```
 
 
-- show origin/remote
+- show remote url
 ```
 $ git remote -v
 ```
+this will list the remote urls. You can have more than one remote urls.
 
-- remove git origin
+- remove a remote url
 ```
-$ git remote rm old_origin
+$ git remote rm <remote_name>
 ```
 
-- set a new origin
+For example, if you have three remote urls:
 ```
-$ git remote add origin new_origin
+$ git remote rm origin
+$ git remote rm gh
+$ git remote rm bb
 ```
+
+
+- set a new remote url
+```
+$ git remote add <remote-name> <new-remote-url>
+```
+
+
+
+- process to push to two remote urls
+
+assume, currently there is one origin and two remote urls named url_1 and url_2
+```
+$ git remote add origin <url_1>
+$ git remote add <name_1> <url_1>
+$ git remote add <name_2> <url_2>
+```
+
+To set up the push URLs:
+```
+$git remote set-url --add --push origin <url_1>
+$ git remote set-url --add --push origin <url_2>
+```
+
+
+verify
+```
+$ git remote show origin
+```
+
+
+
+
 
 
 
