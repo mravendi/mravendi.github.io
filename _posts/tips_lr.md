@@ -1,32 +1,25 @@
-# ML Tips and Tricks
+# Best Practices for ML
 
-The machine learning and data science fields are based on some fundamentals and many techniques. 
-In this post, I will share some of the important techniques that can help improve the performance of your ML models.
+Learning to apply best practices in machine learning (ML), deep learning (DL), and data science (DS) is the key to improve the performance of your models.
+In this post, I will share some of the best pracices that are applicable to most of ML/DL/DS problems. The code snippets in this post are based on Python and PyTorch.
 
 
 ## Basic Setup
-The focus of this post is about developing deep learning models. However, the techniques introduced are applicable to other
-ML algorithms.
+
+To train the models, we need the following elements:
+- data (training, validation, test)
+- a model 
+- a loss function 
+- an optimizer
+
 We assume to have the training, validation, and
 test datasets. We use the training dataset to train the model. The validation dataset is used to track
 the model's performance during training. We use the test dataset for the final evaluation of
 the model. The target values of the test dataset are usually hidden from us. 
 
-To develop our data-driven models, the following elements are required:
-- Training data (input and target)
-- The model 
-- The loss function 
-- The optimizer
-
 You can see the interaction between these elements in the following diagram:
 ![trainingloop](https://github.com/mravendi/mravendi.github.io/blob/master/images/tipstricks/trainingloop.png)
 
-
-In each iteration of the training loop, we select a batch of training data. Then, we feed the data to the model to get the model
-predictions. After that, we calculate the loss value. Next, we compute the gradients of the loss
-function with respect to the model parameters. Finally, the
-optimizer updates the parameters based on the gradients. This loop continues. We also use
-a validation dataset to track the model's performance during training.
 
 
 
@@ -46,10 +39,42 @@ torch.manual_seed(seed)
 
 ```
 
+
+### Splitting Data
+If you have not previously, split your data into three groups: training, validation, and
+test datasets. We use the training dataset to train the model. The validation dataset is used to track
+the model's performance during training. We use the test dataset for the final evaluation of
+the model. 
+
+An important to keep in mind is to split your data by group or source. In other words, if you have mulitple photos of a patient caputred at different times, they are all
+essentially in one group and should be either in the train/test datasets and not partially in both.
+
+
+### Managing Experiments
+Building ML models, you are going to experiment a lot by trying different hyper-parameters, models, and data. It is a good practice to keep track of your experiments. An easy method is to write a few lines of codes to automatically create a folder per experiment, and store all parameters and models in the folder. You can also try using open source tools such as (Mlflow)[https://mlflow.org/] to manage your experiments.
+
+
+
+### Defining the Loss function
+Define the loss function based on the task. For instance, for classification problems, cross entropy or for regression problems mean square error. Here is an example of defining the CrossEntropyLoss in PyTorch:
+
+```python
+from torch import nn
+loss_func = nn.CrossEntropyLoss(reduction="sum")
+```
+
+
+### Defining Evaluatuion Metrics
+Define an evaluation metric for the problem at hand. For example, Intersection Over Union (IOU) in segmentaion problems or Area Under the Curve (AUC) in classification problems are common. Here is an example of defining IOU using PyTorch:
+
+```python
+import torchvision
+iou=torchvision.ops.box_iou(output, target)
+```
+
 ### Learning Rates
 Learning rate is one of the most improtant hyper-parameters in ML experiments. When we say hyper-parameter, that means you need to try to find its value by experimenting.
-Nevertheless, there are rules of thumbs and previous reported values in the literature that you can start with. 
-For instance, if you are training a CNN model from scratch with the weights randomly initialized, you need a bigger learning rate (in the order of 1e-4) compared to when you are fine-tunning a model on a pre-trained model (in the order of 10e-6). For most CNN models, ``` lr= 3e-4``` works best for models trained from scratch. In PyTorch it is easy to
+If you are training a CNN model from scratch with the weights randomly initialized, you need a bigger learning rate (in the order of 1e-4) compared to when you are fine-tunning a model on a pre-trained model (in the order of 10e-6). In PyTorch it is easy to
 set or change the learning rate when defining the optimizer.
 
 ```python
@@ -71,21 +96,18 @@ current lr=0.0003
 ```
 
 
-
-
-### Early stopping
-Perhaps you are familiar with overfitting. It happens when your models are over-trained and thus cannot generalize beyond the training dataset. You can easily see this 
+### Monitoring Metrics and Early stopping
+If you are familiar with overfitting, you hate it if not you are going to hear a lot about it. Overfitting happens when your models are over-trained and thus cannot generalize beyond the training dataset. You can easily see this 
 behaviour if you plot the loss values of training and validation metrics. An example is shown in the following figure.
 
 ![ovefitting](https://github.com/mravendi/mravendi.github.io/blob/master/images/tipstricks/overfitting.png)
 
+That is why it is important to monitor the progress of training and validation losses and metrics during training to be able to stop the training once needed. 
 
-Early stopping is the most important technique to avoid overfitting. In early stoping technique, you monitor the validation loss values and if it plateus or starts to increases
-you stop the training process to avoid overfitting.
 
-### Storing Weights During Training
-Another technique to avoid overfitting, is to avoid storing/deploying an overfitted model. Thus, a good practive is that after an epoch, store the updated weights only if 
-there is an improvement in the validation metrics. You can do this in PyTorch using the following snippet:
+### Storing Good Weights
+ML models are fitted on the training data recursively (each iteration called epoch). But the models does not necessirily improve in eatch epoch. A good practive is that
+after an epoch, store the updated weights only if there is an improvement in the validation metrics. Checkout the following snippet for a way of doing this process:
 
 ```python
 if val_loss < best_loss:
@@ -134,6 +156,13 @@ train_transformer = transforms.Compose([
 
 ### Pre-Trained Models
 One of the successful techniques in developing ML models is the use of pre-trained models and transfer learning. 
+Instead of building a custom model and train it from scratch, we can use state-of-the-art pre-trained models for our applications.
+Such models were trained on a large dataset and can boost the peformance of your task. Here is an example of defining a resnet18 model:
+
+```python
+from torchvision import models
+model_resnet18 = models.resnet18(pretrained=False)
+```
 
 ### Data Normalization
 Data normalization is another pre-processing step that you can perform on-the-fly together with data augmentation. Usually, we perform multiple
@@ -141,8 +170,9 @@ steps of data augmentation in series on a batch of data and then normalize the f
 using pre-trained models for your tasks by fine-tunning on your dataset. In such a case, you should follow the normalization approach of the pre-trained models.
 
 ### Model Deployment
-After training your ML models, you certainly want to deploy them for an application. One the key factors to keep in mind is that to perform the pre-processing steps used 
-during training. 
+After training your ML models, you certainly want to deploy them for an application. One the key factors to keep in mind is that to perform the same pre-processing steps used 
+for training. For example, if you scaled your training data to the range of [0,1], do not forget to do the same on during deployment. 
+
 
 
 
