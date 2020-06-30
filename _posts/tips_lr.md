@@ -50,7 +50,7 @@ When building ML models, you are going to experiment a lot by trying different h
 
 
 
-### Defining the Loss function
+### Defining Loss function
 The loss function will guide the optimizer to update the model parameters. Define the loss function according to the task and data. Most often you can use standard loss functions and sometimes you have to define custom loss functions depending on the data and task. 
 
 
@@ -95,7 +95,7 @@ If you are familiar with overfitting, you hate it if not you are going to hear a
 That is why it is important to monitor the progress of training and validation losses and metrics during training to be able to stop the training once needed. 
 
 
-### Storing Good Weights
+### Storing Weights
 ML models are fitted on the training data recursively (each iteration called an epoch). But the models do not necessarily improve in each epoch. A good practice is that
 after an epoch, store the updated weights only if there is an improvement in the validation metrics. Check out the following snippet for a way of doing this method:
 
@@ -103,8 +103,6 @@ after an epoch, store the updated weights only if there is an improvement in the
 if val_loss < best_loss:
   best_loss = val_loss
   best_model_wts = copy.deepcopy(model.state_dict())
-
-torch.save(model.state_dict(), path2weights)
 ```
 
 ### Learning Rate Schedules
@@ -161,6 +159,7 @@ steps of data augmentation in series on a batch of data and then normalize the o
 After training your ML models, you certainly want to deploy them for an application. Do not forget to perform the same pre-processing steps used for training during deployment. For example, if you scaled your training data to the range of [0,1], you need to do the same during deployment.  
 
 
+Keep Modeling!
 
 
 
