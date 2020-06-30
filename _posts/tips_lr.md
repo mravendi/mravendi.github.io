@@ -1,4 +1,4 @@
-# Best Practices for ML
+# Some Best Practices for Building Better ML Models
 
 Learning to apply best practices is the key to improve the performance of machine learning (ML) models.
 In this post, I will share some of the best practices that apply to most of the ML problems. The code snippets of this post are based on Python and PyTorch.
