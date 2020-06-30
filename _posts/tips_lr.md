@@ -1,31 +1,21 @@
 # Best Practices for ML
 
-Learning to apply best practices in machine learning (ML), deep learning (DL), and data science (DS) is the key to improve the performance of your models.
-In this post, I will share some of the best pracices that are applicable to most of ML/DL/DS problems. The code snippets in this post are based on Python and PyTorch.
-
+Learning to apply best practices is the key to improve the performance of machine learning (ML) models.
+In this post, I will share some of the best practices that apply to most of the ML problems. The code snippets of this post are based on Python and PyTorch.
 
 ## Basic Setup
-
-To train the models, we need the following elements:
-- data (training, validation, test)
+To train ML models, we need the following elements:
+- data 
 - a model 
 - a loss function 
 - an optimizer
 
-We assume to have the training, validation, and
-test datasets. We use the training dataset to train the model. The validation dataset is used to track
-the model's performance during training. We use the test dataset for the final evaluation of
-the model. The target values of the test dataset are usually hidden from us. 
-
-You can see the interaction between these elements in the following diagram:
-![trainingloop](https://github.com/mravendi/mravendi.github.io/blob/master/images/tipstricks/trainingloop.png)
-
-
+We use the data to train a model by defining a loss function and optimizing the model parameters to minimize an error.
 
 
 ### Fixing Random Seed Points
 One of the simple yet important steps when building ML models is to fix the random seed point in your ML experiments. In a typical ML experiment, we perform multiple steps that
-rely on random distributions such as: data shuffling, data spliting, weight initialization, etc. Due to these randomness, we may see different results with the same set of hyper-parameters if we do not fix the random seed. Therefore, for the sake of reproducibility and making better sounding colclusions when doing ML experiments, you can add the following snippet right in the beggining of your scripts.
+rely on random distributions such as data shuffling, data splitting, weight initialization, etc. Due to randomness, we may see different results with the same set of hyper-parameters if we do not fix the random seed. Therefore, for the sake of reproducibility and making better sounding conclusions when doing ML experiments, you can add the following snippet right at the beginning of your scripts.
 
 ```python
 import numpy as np
@@ -43,29 +33,29 @@ torch.manual_seed(seed)
 ### Splitting Data
 If you have not previously, split your data into three groups: training, validation, and
 test datasets. We use the training dataset to train the model. The validation dataset is used to track
-the model's performance during training. We use the test dataset for the final evaluation of
-the model. 
+the model's performance during training. We use the test dataset for the final evaluation of the model. 
 
-An important to keep in mind is to split your data by group or source. In other words, if you have mulitple photos of a patient caputred at different times, they are all
-essentially in one group and should be either in the train/test datasets and not partially in both.
+A key point to keep in mind is to split your data by group or source. For example, assume that you have 100 images from 10 patients (10 per patient). In this case, you need to split the data patient-wise and not image-wise. For this, I usually use the ```group_kfold ``` method from ```sklearn```. Here is an example:
+
+```python
+ import numpy as np
+from sklearn.model_selection import GroupKFold
+group_kfold = GroupKFold(n_splits=n_splits)
+ group_kfold.get_n_splits(X, y, groups)
+```
 
 
 ### Managing Experiments
-Building ML models, you are going to experiment a lot by trying different hyper-parameters, models, and data. It is a good practice to keep track of your experiments. An easy method is to write a few lines of codes to automatically create a folder per experiment, and store all parameters and models in the folder. You can also try using open source tools such as (Mlflow)[https://mlflow.org/] to manage your experiments.
+When building ML models, you are going to experiment a lot by trying different hyper-parameters, models, and data. It is a good practice to keep track of your experiments. An easy method is to write a few lines of codes to automatically create a folder per experiment and store all parameters and models in the folder. You can also try using open source tools such as (MLflow)[https://mlflow.org/] to manage your experiments.
 
 
 
 ### Defining the Loss function
-Define the loss function based on the task. For instance, for classification problems, cross entropy or for regression problems mean square error. Here is an example of defining the CrossEntropyLoss in PyTorch:
-
-```python
-from torch import nn
-loss_func = nn.CrossEntropyLoss(reduction="sum")
-```
+The loss function will guide the optimizer to update the model parameters. Define the loss function according to the task and data. Most often you can use standard loss functions and sometimes you have to define custom loss functions depending on the data and task. 
 
 
 ### Defining Evaluatuion Metrics
-Define an evaluation metric for the problem at hand. For example, Intersection Over Union (IOU) in segmentaion problems or Area Under the Curve (AUC) in classification problems are common. Here is an example of defining IOU using PyTorch:
+Define a proper evaluation metric for the problem at hand. For example, Intersection Over Union (IOU) in segmentation problems or Area Under the Curve (AUC) in classification problems are common. Here is an example of defining IOU using PyTorch:
 
 ```python
 import torchvision
@@ -73,9 +63,10 @@ iou=torchvision.ops.box_iou(output, target)
 ```
 
 ### Learning Rates
-Learning rate is one of the most improtant hyper-parameters in ML experiments. When we say hyper-parameter, that means you need to try to find its value by experimenting.
-If you are training a CNN model from scratch with the weights randomly initialized, you need a bigger learning rate (in the order of 1e-4) compared to when you are fine-tunning a model on a pre-trained model (in the order of 10e-6). In PyTorch it is easy to
-set or change the learning rate when defining the optimizer.
+The learning rate is one of the most important hyper-parameters in ML experiments. When we say hyper-parameter, that means you need to try to find its value by experimenting.
+For instance, if you are training a CNN model from scratch with the weights randomly initialized, you need a bigger learning rate (in the order of 1e-4) compared to when you are fine-tuning a model on a pre-trained model (in the order of 10e-6). 
+
+Here is an example in PyTorch to set or change the learning rate:
 
 ```python
 from torch import optim
@@ -97,8 +88,7 @@ current lr=0.0003
 
 
 ### Monitoring Metrics and Early stopping
-If you are familiar with overfitting, you hate it if not you are going to hear a lot about it. Overfitting happens when your models are over-trained and thus cannot generalize beyond the training dataset. You can easily see this 
-behaviour if you plot the loss values of training and validation metrics. An example is shown in the following figure.
+If you are familiar with overfitting, you hate it if not you are going to hear a lot about it. Overfitting happens when your models are over-trained and thus cannot generalize beyond the training dataset. This is how it looks like if you plot the loss values for the training and validation datasets:
 
 ![ovefitting](https://github.com/mravendi/mravendi.github.io/blob/master/images/tipstricks/overfitting.png)
 
@@ -106,8 +96,8 @@ That is why it is important to monitor the progress of training and validation l
 
 
 ### Storing Good Weights
-ML models are fitted on the training data recursively (each iteration called epoch). But the models does not necessirily improve in eatch epoch. A good practive is that
-after an epoch, store the updated weights only if there is an improvement in the validation metrics. Checkout the following snippet for a way of doing this process:
+ML models are fitted on the training data recursively (each iteration called an epoch). But the models do not necessarily improve in each epoch. A good practice is that
+after an epoch, store the updated weights only if there is an improvement in the validation metrics. Check out the following snippet for a way of doing this method:
 
 ```python
 if val_loss < best_loss:
@@ -118,11 +108,10 @@ torch.save(model.state_dict(), path2weights)
 ```
 
 ### Learning Rate Schedules
-When training an ML, it is normal to see that the loss function drops quickly and then stops at a certain point or plateus. In such situations, changing the learning rate
-can help the model to scape the plateu and continoue with it decline. In order to change the learning rate, learning rate schedules have been used either manually or automatically to take care of the learning rate. The process is that you monitor the loss value on the validation data and once it reaches a plateu, we usually descrease 
-the learning rate by a factor of 2. There are more varieties of learning rates that you can find on PyTorch website or real examples in my [book](https://www.amazon.com/PyTorch-Computer-Vision-Cookbook-computer/dp/1838644830/ref=sr_1_1_sspa?crid=357W25TVH92GN&dchild=1&keywords=pytorch+computer+vision+cookbook&qid=1592800424&sprefix=pytocrch+comp%2Caps%2C201&sr=8-1-spons&psc=1&spLa=ZW5jcnlwdGVkUXVhbGlmaWVyPUExTVlaS1VQVTQ5TUpMJmVuY3J5cHRlZElkPUEwMDc5NzE1U0xQVktER1FOVkMwJmVuY3J5cHRlZEFkSWQ9QTA4NDQ2ODFBN1pEOFhCN1dYUVAmd2lkZ2V0TmFtZT1zcF9hdGYmYWN0aW9uPWNsaWNrUmVkaXJlY3QmZG9Ob3RMb2dDbGljaz10cnVl).
+When training an ML, it is normal to see that the loss function drops quickly and then stops at a certain point or plateaus. In such situations, changing the learning rate
+can help the model to scape the plateau and continue with its decline. To change the learning rate, learning rate schedules have been used either manually or automatically to take care of the learning rate. The process is that we monitor the loss value on the validation data and once it reaches a plateau, we usually decrease the learning rate by a factor of 2. There are more varieties of learning rates that you can find on PyTorch website or real examples in my [book](https://www.amazon.com/PyTorch-Computer-Vision-Cookbook-computer/dp/1838644830/ref=sr_1_1_sspa?crid=357W25TVH92GN&dchild=1&keywords=pytorch+computer+vision+cookbook&qid=1592800424&sprefix=pytocrch+comp%2Caps%2C201&sr=8-1-spons&psc=1&spLa=ZW5jcnlwdGVkUXVhbGlmaWVyPUExTVlaS1VQVTQ5TUpMJmVuY3J5cHRlZElkPUEwMDc5NzE1U0xQVktER1FOVkMwJmVuY3J5cHRlZEFkSWQ9QTA4NDQ2ODFBN1pEOFhCN1dYUVAmd2lkZ2V0TmFtZT1zcF9hdGYmYWN0aW9uPWNsaWNrUmVkaXJlY3QmZG9Ob3RMb2dDbGljaz10cnVl).
 
-In PyTorch it is very easy to define a learning rate schedule. Here is a snippet:
+In PyTorch, it is very easy to define a learning rate schedule. Here is a snippet:
 
 ```python
 from torch.optim.lr_scheduler import ReduceLROnPlateau
@@ -136,7 +125,7 @@ The above learning rate schedule would wait for ```patience=20``` epochs before 
 Data augmentation is another critical step in training ML  algorithms, especially for small datasets to reduce/avoid overfitting. It can help 
 to reduce the overfitting by artificially enlarging your training dataset. 
 Even if you think that your training dataset is big enough, data augmentation can help with the robustness of your models. 
-The process of data augmentation consists of randomly transforming the original data to get a new data. 
+The process of data augmentation consists of randomly transforming the original data to get new data. 
 You can use ready-to-use Python packages to perform data augmentation on-the-fly. 
 
 For instance, in image classification/detection tasks, you can randomly flip images horizontally as seen in the following figure:
@@ -157,7 +146,7 @@ train_transformer = transforms.Compose([
 ### Pre-Trained Models
 One of the successful techniques in developing ML models is the use of pre-trained models and transfer learning. 
 Instead of building a custom model and train it from scratch, we can use state-of-the-art pre-trained models for our applications.
-Such models were trained on a large dataset and can boost the peformance of your task. Here is an example of defining a resnet18 model:
+Such models were trained on a large dataset and can boost the performance of your task. Here is an example of defining a resnet18 model:
 
 ```python
 from torchvision import models
@@ -165,13 +154,11 @@ model_resnet18 = models.resnet18(pretrained=False)
 ```
 
 ### Data Normalization
-Data normalization is another pre-processing step that you can perform on-the-fly together with data augmentation. Usually, we perform multiple
-steps of data augmentation in series on a batch of data and then normalize the final outcome using one of the common techniques such as zero-mean unit variance, scale to the range of [0,1], etc. The point of data normalization is to bring the range of your data to a standard range to help with the training. A key point to consider is when
-using pre-trained models for your tasks by fine-tunning on your dataset. In such a case, you should follow the normalization approach of the pre-trained models.
+Data normalization is a pre-processing step that you can perform on-the-fly together with data augmentation. Usually, we perform multiple
+steps of data augmentation in series on a batch of data and then normalize the outcome using one of the common techniques such as zero-mean unit variance, scale to the range of [0,1], etc. The point of data normalization is to change the range of your data to a standard range to help with the training. 
 
 ### Model Deployment
-After training your ML models, you certainly want to deploy them for an application. One the key factors to keep in mind is that to perform the same pre-processing steps used 
-for training. For example, if you scaled your training data to the range of [0,1], do not forget to do the same on during deployment. 
+After training your ML models, you certainly want to deploy them for an application. Do not forget to perform the same pre-processing steps used for training during deployment. For example, if you scaled your training data to the range of [0,1], you need to do the same during deployment.  
 
 
 
