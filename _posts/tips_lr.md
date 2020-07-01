@@ -68,7 +68,7 @@ iou=torchvision.ops.box_iou(output, target)
 ```
 
 ### Learning Rates
-The learning rate is one of the most important hyper-parameters in ML experiments. That means you need to try to find its value by experimenting. Start with default values but do not settle on that. Examperiment and find the best value.
+The learning rate is one of the most important hyper-parameters in ML experiments. That means you need to try to find its value by experimenting. Start with default values but do not settle on that. Experiment and find the best value.
 
 Here is an example in PyTorch to set or change the learning rate:
 
@@ -94,7 +94,7 @@ current lr=0.0003
 ### Monitoring Metrics and Early stopping
 If you are familiar with overfitting, you hate it if not check out this [post](https://mravendi.github.io/2018/02/28/AnotherLook.html), you are going to hear a lot about it. 
 
-In a nutshel, overfitting happens when your models are over-trained and thus cannot generalize beyond the training dataset. This is how it looks like if you plot the loss values for the training and validation datasets:
+In a nutshell, overfitting happens when your models are over-trained and thus cannot generalize beyond the training dataset. This is how it looks like if you plot the loss values for the training and validation datasets:
 
 ![ovefitting](https://github.com/mravendi/mravendi.github.io/blob/master/images/tipstricks/overfitting.png)
 
@@ -113,7 +113,7 @@ if val_loss < best_loss:
 
 ### Learning Rate Schedules
 When training an ML, it is normal to see that the loss function drops quickly and then stops at a certain point or plateaus. In such situations, changing the learning rate
-can help the model to scape the plateau and continue with its decline. To change the learning rate, learning rate schedules have been used either manually or automatically to take care of the learning rate. The process is that we monitor the loss value on the validation data and once it reaches a plateau, we usually decrease the learning rate by a some factor. There are more varieties of learning rates that you can find on PyTorch website or real examples in my [book](https://www.amazon.com/PyTorch-Computer-Vision-Cookbook-computer/dp/1838644830/ref=sr_1_1_sspa?crid=357W25TVH92GN&dchild=1&keywords=pytorch+computer+vision+cookbook&qid=1592800424&sprefix=pytocrch+comp%2Caps%2C201&sr=8-1-spons&psc=1&spLa=ZW5jcnlwdGVkUXVhbGlmaWVyPUExTVlaS1VQVTQ5TUpMJmVuY3J5cHRlZElkPUEwMDc5NzE1U0xQVktER1FOVkMwJmVuY3J5cHRlZEFkSWQ9QTA4NDQ2ODFBN1pEOFhCN1dYUVAmd2lkZ2V0TmFtZT1zcF9hdGYmYWN0aW9uPWNsaWNrUmVkaXJlY3QmZG9Ob3RMb2dDbGljaz10cnVl).
+can help the model to scape the plateau and continue with its decline. To change the learning rate, learning rate schedules have been used either manually or automatically to take care of the learning rate. The process is that we monitor the loss value on the validation data and once it reaches a plateau, we usually decrease the learning rate by some factor. There are more varieties of learning rates that you can find on the PyTorch website or real examples in my [book](https://www.amazon.com/PyTorch-Computer-Vision-Cookbook-computer/dp/1838644830/ref=sr_1_1_sspa?crid=357W25TVH92GN&dchild=1&keywords=pytorch+computer+vision+cookbook&qid=1592800424&sprefix=pytocrch+comp%2Caps%2C201&sr=8-1-spons&psc=1&spLa=ZW5jcnlwdGVkUXVhbGlmaWVyPUExTVlaS1VQVTQ5TUpMJmVuY3J5cHRlZElkPUEwMDc5NzE1U0xQVktER1FOVkMwJmVuY3J5cHRlZEFkSWQ9QTA4NDQ2ODFBN1pEOFhCN1dYUVAmd2lkZ2V0TmFtZT1zcF9hdGYmYWN0aW9uPWNsaWNrUmVkaXJlY3QmZG9Ob3RMb2dDbGljaz10cnVl).
 
 ![lr-schedule](/images/tipstricks/lrsch.png)
 
@@ -168,17 +168,16 @@ After training your ML models, you certainly want to deploy them for an applicat
 
 
 ### Ensembling
-Finally, here it comes the power of ensembling. Ensembling multiple models is a powerful technique to boost the performance of ML systems. 
-The idea is to train multiple models on different combination of data. At deployment time, we get the output of individual models and take the average as the final output.
+Finally, here comes ensembling. Ensembling multiple models is a powerful technique to boost the performance of ML systems. 
+The idea is to train multiple models on a different combination of data. At deployment time, we get the output of individual models and take the average of all models as the final output.
 
 ![ensemble](/images/tipstricks/ensemble.png)
 
-The idea is that by training different models, each model will learn different aspect of the data that can complement each other. The famous analogy is 
+By training different models, each model will learn a different aspect of the data that can complement each other. The famous analogy is 
 [The Blind Men, the Elephant, and Knowledge](https://en.wikisource.org/wiki/The_poems_of_John_Godfrey_Saxe/The_Blind_Men_and_the_Elephant).
 
 
-If you do not have any time constraints during deployment or models are small, ensembling will be handy. In real-time applications with time constrains, it is hard to justify
-cost versus benefit.
+If you do not have any time constraints during deployment or models are small, ensembling will be handy. In real-time applications with time constraints, it is hard to justify the cost versus benefit of ensembling.
 
 
 
