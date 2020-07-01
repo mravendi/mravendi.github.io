@@ -1,7 +1,7 @@
 # Some Best Practices for Building Better ML Models
 
 Learning to apply best practices is the key to improve the performance of machine learning (ML) models.
-In this post, I will share some of the best practices that apply to most of the ML problems. The code snippets of this post are based on Python and PyTorch.
+In this post, I will share some of the best practices that apply to most ML problems. The code snippets of this post are based on Python and PyTorch.
 
 ## Basic Setup
 To train ML models, we need the following elements:
@@ -35,7 +35,10 @@ If you have not previously, split your data into three groups: training, validat
 test datasets. We use the training dataset to train the model. The validation dataset is used to track
 the model's performance during training. We use the test dataset for the final evaluation of the model. 
 
-A key point to keep in mind is to split your data by group or source. For example, assume that you have 100 images from 10 patients (10 per patient). In this case, you need to split the data patient-wise and not image-wise. For this, I usually use the ```group_kfold ``` method from ```sklearn```. Here is an example:
+![datasplit](/images/tipstricks/datasplit.png)
+
+A key point to keep in mind is to split your data by groups. For example, assume that you have 100 images from 10 patients (10 per patient). In this case, you need to split the data patient-wise and not image-wise. 
+I usually use the ```group_kfold ``` method from ```sklearn``` when I need to do data splitting by groups:
 
 ```python
  import numpy as np
@@ -51,11 +54,13 @@ When building ML models, you are going to experiment a lot by trying different h
 
 
 ### Defining Loss function
-The loss function will guide the optimizer to update the model parameters. Define the loss function according to the task and data. Most often you can use standard loss functions and sometimes you have to define custom loss functions depending on the data and task. 
+The loss function will guide the optimizer to update the model parameters. You need to define the loss function according to the task and data. 
+Most often you can use standard loss functions and sometimes you have to define custom loss functions depending on the data and task. 
+You can check out Chapters 4 and 5 of my [book](https://www.amazon.com/PyTorch-Computer-Vision-Cookbook-computer/dp/1838644830/ref=sr_1_2_sspa?dchild=1&keywords=computer+vision+cookbook&qid=1592198268&sr=8-2-spons&psc=1&spLa=ZW5jcnlwdGVkUXVhbGlmaWVyPUEzUEVPNEI1REE4WTBQJmVuY3J5cHRlZElkPUEwODI5NjUxMlQ2T0ZCSEkxNTg4NiZlbmNyeXB0ZWRBZElkPUEwODQ0NjgxQTdaRDhYQjdXWFFQJndpZGdldE5hbWU9c3BfYXRmJmFjdGlvbj1jbGlja1JlZGlyZWN0JmRvTm90TG9nQ2xpY2s9dHJ1ZQ==) for examples of custom loss functions.
 
 
 ### Defining Evaluatuion Metrics
-Define a proper evaluation metric for the problem at hand. For example, Intersection Over Union (IOU) in segmentation problems or Area Under the Curve (AUC) in classification problems are common. Here is an example of defining IOU using PyTorch:
+You need to define a proper evaluation metric for the problem at hand. For example, Intersection Over Union (IOU) in segmentation problems or Area Under the Curve (AUC) in classification problems are common. Here is an example of defining IOU using PyTorch:
 
 ```python
 import torchvision
@@ -63,8 +68,7 @@ iou=torchvision.ops.box_iou(output, target)
 ```
 
 ### Learning Rates
-The learning rate is one of the most important hyper-parameters in ML experiments. When we say hyper-parameter, that means you need to try to find its value by experimenting.
-For instance, if you are training a CNN model from scratch with the weights randomly initialized, you need a bigger learning rate (in the order of 1e-4) compared to when you are fine-tuning a model on a pre-trained model (in the order of 10e-6). 
+The learning rate is one of the most important hyper-parameters in ML experiments. That means you need to try to find its value by experimenting. Start with default values but do not settle on that. Examperiment and find the best value.
 
 Here is an example in PyTorch to set or change the learning rate:
 
@@ -88,7 +92,9 @@ current lr=0.0003
 
 
 ### Monitoring Metrics and Early stopping
-If you are familiar with overfitting, you hate it if not you are going to hear a lot about it. Overfitting happens when your models are over-trained and thus cannot generalize beyond the training dataset. This is how it looks like if you plot the loss values for the training and validation datasets:
+If you are familiar with overfitting, you hate it if not check out this [post](https://mravendi.github.io/2018/02/28/AnotherLook.html), you are going to hear a lot about it. 
+
+In a nutshel, overfitting happens when your models are over-trained and thus cannot generalize beyond the training dataset. This is how it looks like if you plot the loss values for the training and validation datasets:
 
 ![ovefitting](https://github.com/mravendi/mravendi.github.io/blob/master/images/tipstricks/overfitting.png)
 
@@ -107,7 +113,9 @@ if val_loss < best_loss:
 
 ### Learning Rate Schedules
 When training an ML, it is normal to see that the loss function drops quickly and then stops at a certain point or plateaus. In such situations, changing the learning rate
-can help the model to scape the plateau and continue with its decline. To change the learning rate, learning rate schedules have been used either manually or automatically to take care of the learning rate. The process is that we monitor the loss value on the validation data and once it reaches a plateau, we usually decrease the learning rate by a factor of 2. There are more varieties of learning rates that you can find on PyTorch website or real examples in my [book](https://www.amazon.com/PyTorch-Computer-Vision-Cookbook-computer/dp/1838644830/ref=sr_1_1_sspa?crid=357W25TVH92GN&dchild=1&keywords=pytorch+computer+vision+cookbook&qid=1592800424&sprefix=pytocrch+comp%2Caps%2C201&sr=8-1-spons&psc=1&spLa=ZW5jcnlwdGVkUXVhbGlmaWVyPUExTVlaS1VQVTQ5TUpMJmVuY3J5cHRlZElkPUEwMDc5NzE1U0xQVktER1FOVkMwJmVuY3J5cHRlZEFkSWQ9QTA4NDQ2ODFBN1pEOFhCN1dYUVAmd2lkZ2V0TmFtZT1zcF9hdGYmYWN0aW9uPWNsaWNrUmVkaXJlY3QmZG9Ob3RMb2dDbGljaz10cnVl).
+can help the model to scape the plateau and continue with its decline. To change the learning rate, learning rate schedules have been used either manually or automatically to take care of the learning rate. The process is that we monitor the loss value on the validation data and once it reaches a plateau, we usually decrease the learning rate by a some factor. There are more varieties of learning rates that you can find on PyTorch website or real examples in my [book](https://www.amazon.com/PyTorch-Computer-Vision-Cookbook-computer/dp/1838644830/ref=sr_1_1_sspa?crid=357W25TVH92GN&dchild=1&keywords=pytorch+computer+vision+cookbook&qid=1592800424&sprefix=pytocrch+comp%2Caps%2C201&sr=8-1-spons&psc=1&spLa=ZW5jcnlwdGVkUXVhbGlmaWVyPUExTVlaS1VQVTQ5TUpMJmVuY3J5cHRlZElkPUEwMDc5NzE1U0xQVktER1FOVkMwJmVuY3J5cHRlZEFkSWQ9QTA4NDQ2ODFBN1pEOFhCN1dYUVAmd2lkZ2V0TmFtZT1zcF9hdGYmYWN0aW9uPWNsaWNrUmVkaXJlY3QmZG9Ob3RMb2dDbGljaz10cnVl).
+
+![lr-schedule](/images/tipstricks/lrsch.png)
 
 In PyTorch, it is very easy to define a learning rate schedule. Here is a snippet:
 
@@ -159,7 +167,33 @@ steps of data augmentation in series on a batch of data and then normalize the o
 After training your ML models, you certainly want to deploy them for an application. Do not forget to perform the same pre-processing steps used for training during deployment. For example, if you scaled your training data to the range of [0,1], you need to do the same during deployment.  
 
 
-Keep Modeling!
+### Ensembling
+Finally, here it comes the power of ensembling. Ensembling multiple models is a powerful technique to boost the performance of ML systems. 
+The idea is to train multiple models on different combination of data. At deployment time, we get the output of individual models and take the average as the final output.
+
+![ensemble](/images/tipstricks/ensemble.png)
+
+The idea is that by training different models, each model will learn different aspect of the data that can complement each other. The famous analogy is 
+[The Blind Men, the Elephant, and Knowledge](https://en.wikisource.org/wiki/The_poems_of_John_Godfrey_Saxe/The_Blind_Men_and_the_Elephant).
+
+
+If you do not have any time constraints during deployment or models are small, ensembling will be handy. In real-time applications with time constrains, it is hard to justify
+cost versus benefit.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
