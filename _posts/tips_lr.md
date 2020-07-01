@@ -59,7 +59,7 @@ Most often you can use standard loss functions and sometimes you have to define 
 You can check out Chapters 4 and 5 of my [book](https://www.amazon.com/PyTorch-Computer-Vision-Cookbook-computer/dp/1838644830/ref=sr_1_2_sspa?dchild=1&keywords=computer+vision+cookbook&qid=1592198268&sr=8-2-spons&psc=1&spLa=ZW5jcnlwdGVkUXVhbGlmaWVyPUEzUEVPNEI1REE4WTBQJmVuY3J5cHRlZElkPUEwODI5NjUxMlQ2T0ZCSEkxNTg4NiZlbmNyeXB0ZWRBZElkPUEwODQ0NjgxQTdaRDhYQjdXWFFQJndpZGdldE5hbWU9c3BfYXRmJmFjdGlvbj1jbGlja1JlZGlyZWN0JmRvTm90TG9nQ2xpY2s9dHJ1ZQ==) for examples of custom loss functions.
 
 
-### Defining Evaluatuion Metrics
+### Defining Evaluation Metrics
 You need to define a proper evaluation metric for the problem at hand. For example, Intersection Over Union (IOU) in segmentation problems or Area Under the Curve (AUC) in classification problems are common. Here is an example of defining IOU using PyTorch:
 
 ```python
