@@ -49,7 +49,7 @@ group_kfold = GroupKFold(n_splits=n_splits)
 
 
 ### Managing Experiments
-When building ML models, you are going to experiment a lot by trying different hyper-parameters, models, and data. It is a good practice to keep track of your experiments. An easy method is to write a few lines of codes to automatically create a folder per experiment and store all parameters and models in the folder. You can also try using open source tools such as (MLflow)[https://mlflow.org/] to manage your experiments.
+When building ML models, you are going to experiment a lot by trying different hyper-parameters, models, and data. It is a good practice to keep track of your experiments. An easy method is to write a few lines of codes to automatically create a folder per experiment and store all parameters and models in the folder. You can also try using open source tools such as [MLflow](https://mlflow.org/) to manage your experiments.
 
 
 
