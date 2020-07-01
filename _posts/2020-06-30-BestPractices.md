@@ -96,7 +96,7 @@ If you are familiar with overfitting, you hate it if not check out this [post](h
 
 In a nutshell, overfitting happens when your models are over-trained and thus cannot generalize beyond the training dataset. This is how it looks like if you plot the loss values for the training and validation datasets:
 
-![ovefitting](https://github.com/mravendi/mravendi.github.io/blob/master/images/tipstricks/overfitting.png)
+![ovefitting](/images/tipstricks/overfitting.png)
 
 That is why it is important to monitor the progress of training and validation losses and metrics during training to be able to stop the training once needed. 
 
