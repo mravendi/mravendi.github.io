@@ -4,7 +4,7 @@ Learning to apply best practices is the key to improve the performance of machin
 In this post, I will share some of the best practices that apply to most ML problems. The code snippets of this post are based on Python and PyTorch.
 
 ## Basic Setup
-To train ML models, we need the following elements:
+First, let us consider a basic setup. To train ML models, we need the following elements:
 - data 
 - a model 
 - a loss function 
@@ -37,15 +37,9 @@ the model's performance during training. We use the test dataset for the final e
 
 ![datasplit](/images/tipstricks/datasplit.png)
 
-A key point to keep in mind is to split your data by groups. For example, assume that you have 100 images from 10 patients (10 per patient). In this case, you need to split the data patient-wise and not image-wise. 
-I usually use the ```group_kfold ``` method from ```sklearn``` when I need to do data splitting by groups:
-
-```python
- import numpy as np
-from sklearn.model_selection import GroupKFold
-group_kfold = GroupKFold(n_splits=n_splits)
- group_kfold.get_n_splits(X, y, groups)
-```
+Usually people use ``` sklearn.model_selection.ShuffleSplit ``` which randomly splits the data for training and testing.
+However, a key point to keep in mind is to split your data by groups if applicable. For example, assume that you have 100 images from 10 patients (10 per patient). In this case, you need to split the data patient-wise and not image-wise. 
+For this type of data, I usually use  ```sklearn.model_selection.GroupShuffleSplit ```:
 
 
 ### Managing Experiments
@@ -60,17 +54,20 @@ You can check out Chapters 4 and 5 of my [book](https://www.amazon.com/PyTorch-C
 
 
 ### Defining Evaluation Metrics
-You need to define a proper evaluation metric for the problem at hand. For example, Intersection Over Union (IOU) in segmentation problems or Area Under the Curve (AUC) in classification problems are common. Here is an example of defining IOU using PyTorch:
+In order to make progrees in your experiments, you need to define a proper evaluation metric for the problem at hand. It will give you a way to measure progress and desing better experiments. Evaluation metrics are task specific. For example, Intersection Over Union (IOU) in segmentation problems or Area Under the Curve (AUC) in classification problems are very common. 
 
+Here is an example of defining IOU using torchvision:
 ```python
 import torchvision
 iou=torchvision.ops.box_iou(output, target)
 ```
 
+
+
 ### Learning Rates
 The learning rate is one of the most important hyper-parameters in ML experiments. That means you need to try to find its value by experimenting. Start with default values but do not settle on that. Experiment and find the best value.
 
-Here is an example in PyTorch to set or change the learning rate:
+Here is an example in PyTorch to set or read the learning rate:
 
 ```python
 from torch import optim
@@ -92,7 +89,7 @@ current lr=0.0003
 
 
 ### Monitoring Metrics and Early stopping
-If you are familiar with overfitting, you hate it if not check out this [post](https://mravendi.github.io/2018/02/28/AnotherLook.html), you are going to hear a lot about it. 
+If you are familiar with overfitting, you would hate it if not check out this [post](https://mravendi.github.io/2018/02/28/AnotherLook.html), you are going to hear a lot about overfitting. 
 
 In a nutshell, overfitting happens when your models are over-trained and thus cannot generalize beyond the training dataset. This is how it looks like if you plot the loss values for the training and validation datasets:
 
@@ -113,11 +110,11 @@ if val_loss < best_loss:
 
 ### Learning Rate Schedules
 When training an ML, it is normal to see that the loss function drops quickly and then stops at a certain point or plateaus. In such situations, changing the learning rate
-can help the model to scape the plateau and continue with its decline. To change the learning rate, learning rate schedules have been used either manually or automatically to take care of the learning rate. The process is that we monitor the loss value on the validation data and once it reaches a plateau, we usually decrease the learning rate by some factor. There are more varieties of learning rates that you can find on the PyTorch website or real examples in my [book](https://www.amazon.com/PyTorch-Computer-Vision-Cookbook-computer/dp/1838644830/ref=sr_1_1_sspa?crid=357W25TVH92GN&dchild=1&keywords=pytorch+computer+vision+cookbook&qid=1592800424&sprefix=pytocrch+comp%2Caps%2C201&sr=8-1-spons&psc=1&spLa=ZW5jcnlwdGVkUXVhbGlmaWVyPUExTVlaS1VQVTQ5TUpMJmVuY3J5cHRlZElkPUEwMDc5NzE1U0xQVktER1FOVkMwJmVuY3J5cHRlZEFkSWQ9QTA4NDQ2ODFBN1pEOFhCN1dYUVAmd2lkZ2V0TmFtZT1zcF9hdGYmYWN0aW9uPWNsaWNrUmVkaXJlY3QmZG9Ob3RMb2dDbGljaz10cnVl).
+can help the model to scape the plateau and continue with its decline. To change the learning rate, learning rate schedules have been used either manually or automatically to take care of the learning rate. The process is that we monitor the loss value on the validation data and once it reaches a plateau, we usually decrease the learning rate by some factor. There are more varieties of learning rates that you can find on the PyTorch website or real examples in my [book](https://www.amazon.com/PyTorch-Computer-Vision-Cookbook-computer/dp/1838644830).
 
 ![lr-schedule](/images/tipstricks/lrsch.png)
 
-In PyTorch, it is very easy to define a learning rate schedule. Here is a snippet:
+Here is a code snippet to define a learning rate schedule:
 
 ```python
 from torch.optim.lr_scheduler import ReduceLROnPlateau
@@ -138,7 +135,7 @@ For instance, in image classification/detection tasks, you can randomly flip ima
 
 ![dataaugmentation](/images/tipstricks/dataaug.png)
 
-Here is an example of how to do data augmentation using torchvision module of PyTorch:
+Here is an example of data augmentation using torchvision:
 
 ```python
 train_transformer = transforms.Compose([
@@ -151,20 +148,29 @@ train_transformer = transforms.Compose([
 
 ### Pre-Trained Models
 One of the successful techniques in developing ML models is the use of pre-trained models and transfer learning. 
-Instead of building a custom model and train it from scratch, we can use state-of-the-art pre-trained models for our applications.
-Such models were trained on a large dataset and can boost the performance of your task. Here is an example of defining a resnet18 model:
+Instead of building a custom model and train it from scratch, we can use state-of-the-art pre-trained models and fine tune them for our applications.
+Such models were trained on a large dataset and can boost the performance of your task once fine-tuned. Here is an example of defining a resnet18 model:
 
 ```python
 from torchvision import models
-model_resnet18 = models.resnet18(pretrained=False)
+model_resnet18 = models.resnet18(pretrained=True)
 ```
+
+You can find an example of employing pre-trained models in Chapter 3 of my [book](https://www.amazon.com/PyTorch-Computer-Vision-Cookbook-computer/dp/1838644830).
 
 ### Data Normalization
 Data normalization is a pre-processing step that you can perform on-the-fly together with data augmentation. Usually, we perform multiple
-steps of data augmentation in series on a batch of data and then normalize the outcome using one of the common techniques such as zero-mean unit variance, scale to the range of [0,1], etc. The point of data normalization is to change the range of your data to a standard range to help with the training. 
+steps of data augmentation in series on a batch of data and then normalize the outcome using one of the common techniques such as zero-mean unit variance, scale to the range of [0,1], etc. The point of data normalization is to convert the data to a standard range to help with the training. 
 
-### Model Deployment
-After training your ML models, you certainly want to deploy them for an application. Do not forget to perform the same pre-processing steps used for training during deployment. For example, if you scaled your training data to the range of [0,1], you need to do the same during deployment.  
+Here is an example of data normalization with the zero-mean unit-variance approach:
+```python
+train_transformer = transforms.Compose([
+  transforms.RandomHorizontalFlip(p=0.5),
+  transforms.RandomVerticalFlip(p=0.5),
+  transforms.ToTensor(),
+  transforms.Normalize([meanR, meanG, meanB], [stdR, stdG, stdB])])
+```
+
 
 
 ### Ensembling
@@ -173,11 +179,11 @@ The idea is to train multiple models on a different combination of data. At depl
 
 ![ensemble](/images/tipstricks/ensemble.png)
 
-By training different models, each model will learn a different aspect of the data that can complement each other. The famous analogy is 
+By training different models, each model will learn a different aspect of the data that can complement each other. The famous analogy in real life to understand ensembling is 
 [The Blind Men, the Elephant, and Knowledge](https://en.wikisource.org/wiki/The_poems_of_John_Godfrey_Saxe/The_Blind_Men_and_the_Elephant).
 
 
-If you do not have any time constraints during deployment or models are small, ensembling will be handy. In real-time applications with time constraints, it is hard to justify the cost versus benefit of ensembling.
+If you do not have any time constraints at deployment or your models are small, ensembling will be handy. In real-time applications with time constraints, it is hard to justify the cost versus benefit of ensembling.
 
 
 
