@@ -37,7 +37,7 @@ the model's performance during training. We use the test dataset for the final e
 
 ![datasplit](/images/tipstricks/datasplit.png)
 
-People usually  use ``` sklearn.model_selection.ShuffleSplit ``` which randomly splits the data for training and testing.
+People usually  use ``` sklearn.model_selection.ShuffleSplit ``` which randomly splits the data into train and test.
 However, a key point to keep in mind is to split your data by groups if applicable. For example, assume that you have 100 images from 10 patients (10 per patient). In this case, you need to split the data patient-wise and not image-wise. 
 For this type of data, I usually use  ```sklearn.model_selection.GroupShuffleSplit ```:
 
