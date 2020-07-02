@@ -54,7 +54,7 @@ You can check out Chapters 4 and 5 of my [book](https://www.amazon.com/PyTorch-C
 
 
 ### Defining Evaluation Metrics
-In order to make progrees in your experiments, you need to define a proper evaluation metric for the problem at hand. It will give you a way to measure progress and desing better experiments. Evaluation metrics are task specific. For example, Intersection Over Union (IOU) in segmentation problems or Area Under the Curve (AUC) in classification problems are very common. 
+To make progress in your experiments, you need to define a proper evaluation metric for the problem at hand. It will give you a way to measure progress and design better experiments. Evaluation metrics are task-specific. For example, Intersection Over Union (IOU) in segmentation problems or Area Under the Curve (AUC) in classification problems are very common. 
 
 Here is an example of defining IOU using torchvision:
 ```python
@@ -148,7 +148,7 @@ train_transformer = transforms.Compose([
 
 ### Pre-Trained Models
 One of the successful techniques in developing ML models is the use of pre-trained models and transfer learning. 
-Instead of building a custom model and train it from scratch, we can use state-of-the-art pre-trained models and fine tune them for our applications.
+Instead of building a custom model and train it from scratch, we can use state-of-the-art pre-trained models and fine-tune them for our applications.
 Such models were trained on a large dataset and can boost the performance of your task once fine-tuned. Here is an example of defining a resnet18 model:
 
 ```python
