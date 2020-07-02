@@ -89,7 +89,7 @@ current lr=0.0003
 
 
 ### Monitoring Metrics and Early stopping
-If you are familiar with overfitting, you would hate it if not check out this [post](https://mravendi.github.io/2018/02/28/AnotherLook.html), you are going to hear a lot about overfitting. 
+If you are familiar with overfitting, you would hate it, if not check out this [post](https://mravendi.github.io/2018/02/28/AnotherLook.html), you are going to hear a lot about overfitting. 
 
 In a nutshell, overfitting happens when your models are over-trained and thus cannot generalize beyond the training dataset. This is how it looks like if you plot the loss values for the training and validation datasets:
 
