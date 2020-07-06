@@ -6,3 +6,4 @@ The most widely used boosting algorithm is called stochastic gradient boosting. 
 
 
 
+![SGB](/images/sgb/stochasticGB.png)
