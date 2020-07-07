@@ -8,10 +8,11 @@ A video is, collection of sequential frames or images that are played one after 
 more than 30 frames per second. Thus, compared to image classification, we have to deal with a large scale of data even for short videos.
 
 
-## Dataset
+## Data Preparation
 The first step is to create the dataset. We will need a training dataset to train our
 model and a test or validation dataset to evaluate the model. For this purpose, we will use
 HMDB: a large human motion database, available [here](https://serre-lab.clps.brown.edu/resource/hmdb-a-large-human-motion-database/#overview). 
+
 The HMDB dataset was collected from various sources, including movies, the Prelinger
 archive, YouTube, and Google videos. It is a pretty large dataset (2 GB) with a total of 7,000
 video clips. There are 51 action classes, each containing a minimum of 101 clips.
@@ -30,10 +31,24 @@ video has hundreds of frames or images. To reduce computational complexity, we w
 spaced across the video. Then, we will define a PyTorch dataset class and a dataloader.
 
 
-### Preparing the data
 In the first part of data preparation, we will only use 16 frames from each video that are equally spaced across
-the entire video and store them as .jpg files. To this end, I defined two helper functions to get and store the frames from a video. The scripts 
-is available in this [link](https://github.com/PacktPublishing/PyTorch-Computer-Vision-Cookbook/blob/master/Chapter10/myutils.py).
+the entire video and store them as .jpg files. To this end, I defined two helper functions to get (```get_frames```) and store the frames (```store_frames```) from a video. The helper functions are defined in ```myutils.py```, which is available [here](https://github.com/PacktPublishing/PyTorch-Computer-Vision-Cookbook/blob/master/Chapter10/myutils.py).
+
+Also, in this [notebook](https://github.com/PacktPublishing/PyTorch-Computer-Vision-Cookbook/blob/master/Chapter10/prepare_data.ipynb), you can see how I used the helper functions to loop over the videos, extract 16 frames and store them as jpg files.
+
+After converting the videos into images, we will split the dataset into training and test sets using ```StratifiedShuffleSplit```. Next, we will define a PyTorch dataset class called ```VideoDataset```. In the class, we will load all 16 images per video, down-sample them to 112 by 112 and stack them into a PyTorch tensor of shape ```[3, 16, height=112, width=112]```.
+
+Then, we will instantiate two objects of the class for the training and test datasets. Next, we will define two data loaders. Data loaders will help us to automatically 
+grab mini-batches from the dataset during training. For instance, if we set batch_size=8, data loaders will return mini-batchs (tensors) of shape ```[8, 3, 16, 112, 112]``` in each iteration.
+
+
+
+
+
+
+
+
+
 
 
 
