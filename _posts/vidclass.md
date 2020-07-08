@@ -43,7 +43,7 @@ grab mini-batches from the dataset during training. For instance, if we set batc
 
 
 
-## Building the Model
+## Model Implementation
 We will use a model to process multiple images of a video in order
 to extract temporal correlation. The model is based on RNN architecture. The goal of RNN models is to extract the
 temporal correlation between the images by keeping a memory of past images. The block
@@ -58,7 +58,42 @@ the shape of [batch_size, timesteps, 3, height, width], where timesteps=16 is
 the number of frames per video. We will use one of the most popular models that has been
 pre-trained on the ImageNet dataset, called ResNet18, as the base model.
 
+You can find an implemention of the the model class in PyTorch called ```Resnt18Rnn``` in this [notebook](https://github.com/PacktPublishing/PyTorch-Computer-Vision-Cookbook/blob/master/Chapter10/Chapter10.ipynb).
 
+Then, you can instantiate an object of the class:
+
+```python
+    params_model={
+        "num_classes": num_classes,
+        "dr_rate": 0.1,
+        "pretrained" : True,
+        "rnn_num_layers": 1,
+        "rnn_hidden_size": 100,}
+    model = Resnt18Rnn(params_model)      
+```
+
+By setting the parameter num_classes according to the number of categories you want to classify.
+
+
+
+## Model Training
+
+We defined the dataset, and the model. Similar to image classification, we can also use the cross entropy objective function. For training, we will
+use the stochastic gradient descent (SGD) algorithm. The training scripts can be found in [myutils.py](https://github.com/PacktPublishing/PyTorch-Computer-Vision-Cookbook/blob/master/Chapter10/myutils.py). Set the parameters and call train_val function to train the model.
+
+```python
+params_train={
+"num_epochs": 20,
+"optimizer": opt,
+"loss_func": loss_func,
+"train_dl": train_dl,
+"val_dl": test_dl,
+"sanity_check": True,
+"lr_scheduler": lr_scheduler,
+"path2weights": "./models/weights_"+model_type+".pt",
+}
+model,loss_hist,metric_hist = myutils.train_val(model,params_train)
+```
 
 
 
