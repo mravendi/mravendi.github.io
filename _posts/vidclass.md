@@ -43,6 +43,24 @@ grab mini-batches from the dataset during training. For instance, if we set batc
 
 
 
+## Building the Model
+We will use a model to process multiple images of a video in order
+to extract temporal correlation. The model is based on RNN architecture. The goal of RNN models is to extract the
+temporal correlation between the images by keeping a memory of past images. The block
+diagram of the model is as follows:
+
+![rnn model](/images/vidclass/rnnmodel.png)
+
+As we can see, the images of a video are fed to a base model to extract high-level features.
+The features are then fed to an RNN layer and the output of the RNN layer is connected to
+a fully connected layer to get the classification output. The input to this model should be in
+the shape of [batch_size, timesteps, 3, height, width], where timesteps=16 is
+the number of frames per video. We will use one of the most popular models that has been
+pre-trained on the ImageNet dataset, called ResNet18, as the base model.
+
+
+
+
 
 
 
