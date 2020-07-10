@@ -2,6 +2,9 @@
 
 Video classification is a task assigning a label to a video clip. In this post, I will share a method of classifying videos using deep CNN.
 
+The outline of this post is as the following:
+1. TOC
+{:toc}
 
 ## Introduction
 A video is, collection of sequential frames or images that are played one after another. Most of the videos that we deal with in our daily life have
@@ -95,6 +98,7 @@ params_train={
 model,loss_hist,metric_hist = myutils.train_val(model,params_train)
 ```
 
+## Model Deployment
 
 
 
