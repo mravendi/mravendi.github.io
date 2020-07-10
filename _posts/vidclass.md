@@ -1,4 +1,4 @@
-# Video Processing with Deep Learning and PyTorch
+# Video Classification with RNN and PyTorch
 
 Video classification is a task assigning a label to a video clip. In this post, I will share a method of classifying videos using deep CNN.
 
