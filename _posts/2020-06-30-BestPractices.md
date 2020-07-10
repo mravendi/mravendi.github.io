@@ -7,7 +7,7 @@ The outline of this post is as the following:
 1. TOC
 {:toc}
 
-## Introduction
+### Basic Setup
 First, let us consider a basic setup. To train ML models, we need the following elements:
 - data 
 - a model 
