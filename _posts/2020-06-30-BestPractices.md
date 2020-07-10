@@ -3,7 +3,11 @@
 Learning to apply best practices is the key to improve the performance of machine learning (ML) models.
 In this post, I will share some of the best practices that apply to most ML problems. The code snippets of this post are based on Python and PyTorch.
 
-## Basic Setup
+The outline of this post is as the following:
+1. TOC
+{:toc}
+
+## Introduction
 First, let us consider a basic setup. To train ML models, we need the following elements:
 - data 
 - a model 
