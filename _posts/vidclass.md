@@ -1,54 +1,45 @@
-# Video Classification with RNN and PyTorch
+# Video Classification with CNN, RNN, and PyTorch
 
-Video classification is a task assigning a label to a video clip. In this post, I will share a method of classifying videos using deep CNN.
+Video classification is a task assigning a label to a video clip. This application is useful if you want to know what kind of
+activity is happening in a video. In this post, I will share a method of classifying videos using Convolutional Neural Networks (CNN) and Recurrent Neural Networks (RNN) implemented in PyTorch.
 
 The outline of this post is as the following:
 1. TOC
 {:toc}
 
 ## Introduction
-A video is, collection of sequential frames or images that are played one after another. Most of the videos that we deal with in our daily life have
+A video is a collection of sequential frames or images that are played one after another. Most of the videos that we deal with in our daily life have
 more than 30 frames per second. Thus, compared to image classification, we have to deal with a large scale of data even for short videos.
 
 
 ## Data Preparation
-The first step is to create the dataset. We will need a training dataset to train our
-model and a test or validation dataset to evaluate the model. For this purpose, we will use
-HMDB: a large human motion database, available [here](https://serre-lab.clps.brown.edu/resource/hmdb-a-large-human-motion-database/#overview). 
+The first step is to prepare the dataset. We will need a training dataset to train our model and a test or validation dataset to evaluate the model. For this purpose, we will use [HMDB: a large human motion database(https://serre-lab.clps.brown.edu/resource/hmdb-a-large-human-motion-database/#overview). 
 
-The HMDB dataset was collected from various sources, including movies, the Prelinger
-archive, YouTube, and Google videos. It is a pretty large dataset (2 GB) with a total of 7,000
-video clips. There are 51 action classes, each containing a minimum of 101 clips.
+The HMDB dataset was collected from various sources, including movies, the Prelinger Archive, YouTube, and Google videos. It is a pretty large dataset (2 GB) with a total of 7,000 video clips. There are 51 action classes, each containing a minimum of 101 clips.
 
-Let us check out a few sample actionsin the following image:
+Here is the first frame of a few sample clips:
 
 ![sample collection](/images/vidclass/samplevid.png)
 
-First download and extract the data into a local folder named data. The folder should
-contain 51 subfolders corresponding to 51 class actions. Also, each subfolder should contain
+You need to first download and extract the data into a local folder named data. The folder should contain 51 subfolders corresponding to 51 class actions. Also, each subfolder should contain
 at least 101 video files of the .avi type for each action class. 
 
+In the first part of data preparation, we will convert the videos into images. We will only use 16 frames from each video that are equally spaced across the entire video and store them as .jpg files. This is to reduce computational complexity.
 
-To create a dataset for video classification, we will convert the videos into images. Each
-video has hundreds of frames or images. To reduce computational complexity, we will select 16 frames per video that are equally
-spaced across the video. Then, we will define a PyTorch dataset class and a dataloader.
+To this end, I defined two helper functions to get (```get_frames```) and store the frames (```store_frames```) from a video. The helper functions are defined in ```myutils.py```, which is available [here](https://github.com/PacktPublishing/PyTorch-Computer-Vision-Cookbook/blob/master/Chapter10/myutils.py).
 
+Also, in this [notebook](https://github.com/PacktPublishing/PyTorch-Computer-Vision-Cookbook/blob/master/Chapter10/prepare_data.ipynb), you can see how I used the helper functions to loop over the videos, extract 16 frames, and store them as jpg files.
 
-In the first part of data preparation, we will only use 16 frames from each video that are equally spaced across
-the entire video and store them as .jpg files. To this end, I defined two helper functions to get (```get_frames```) and store the frames (```store_frames```) from a video. The helper functions are defined in ```myutils.py```, which is available [here](https://github.com/PacktPublishing/PyTorch-Computer-Vision-Cookbook/blob/master/Chapter10/myutils.py).
+After converting the videos into images, we will split the dataset into training and test sets using ```StratifiedShuffleSplit```. 
 
-Also, in this [notebook](https://github.com/PacktPublishing/PyTorch-Computer-Vision-Cookbook/blob/master/Chapter10/prepare_data.ipynb), you can see how I used the helper functions to loop over the videos, extract 16 frames and store them as jpg files.
+Next, we will define a PyTorch dataset class called ```VideoDataset```. In the class, we will load all 16 images per video, down-sample them to 112 by 112, and stack them into a PyTorch tensor of shape ```[16, 3 112, 112]```.
 
-After converting the videos into images, we will split the dataset into training and test sets using ```StratifiedShuffleSplit```. Next, we will define a PyTorch dataset class called ```VideoDataset```. In the class, we will load all 16 images per video, down-sample them to 112 by 112 and stack them into a PyTorch tensor of shape ```[3, 16, height=112, width=112]```.
-
-Then, we will instantiate two objects of the class for the training and test datasets. Next, we will define two data loaders. Data loaders will help us to automatically 
-grab mini-batches from the dataset during training. For instance, if we set batch_size=8, data loaders will return mini-batchs (tensors) of shape ```[8, 3, 16, 112, 112]``` in each iteration.
+Then, we will define two instances of the class for the training and test datasets. Next, we will define two data loaders. Data loaders will help us to automatically grab mini-batches from the dataset during training. For instance, if we set ```batch_size=8```, data loaders will return mini-batches (tensors) of shape ```[8, 16, 3, 112, 112]``` in each iteration.
 
 
 
 ## Model Implementation
-We will use a model to process multiple images of a video in order
-to extract temporal correlation. The model is based on RNN architecture. The goal of RNN models is to extract the
+We will use a model to process multiple images of a video to extract temporal correlation. The model is based on RNN architecture. The goal of RNN models is to extract the
 temporal correlation between the images by keeping a memory of past images. The block
 diagram of the model is as follows:
 
@@ -58,10 +49,10 @@ As we can see, the images of a video are fed to a base model to extract high-lev
 The features are then fed to an RNN layer and the output of the RNN layer is connected to
 a fully connected layer to get the classification output. The input to this model should be in
 the shape of [batch_size, timesteps, 3, height, width], where timesteps=16 is
-the number of frames per video. We will use one of the most popular models that has been
+the number of frames per video. We will use one of the most popular models that have been
 pre-trained on the ImageNet dataset, called ResNet18, as the base model.
 
-You can find an implemention of the the model class in PyTorch called ```Resnt18Rnn``` in this [notebook](https://github.com/PacktPublishing/PyTorch-Computer-Vision-Cookbook/blob/master/Chapter10/Chapter10.ipynb).
+You can find an implementation of the model class in PyTorch called ```Resnt18Rnn``` in this [notebook](https://github.com/PacktPublishing/PyTorch-Computer-Vision-Cookbook/blob/master/Chapter10/Chapter10.ipynb).
 
 Then, you can instantiate an object of the class:
 
@@ -81,7 +72,7 @@ By setting the parameter num_classes according to the number of categories you w
 
 ## Model Training
 
-We defined the dataset, and the model. Similar to image classification, we can also use the cross entropy objective function. For training, we will
+We defined dataset and the model. Similar to image classification, we can also use the cross-entropy objective function. For training, we will
 use the stochastic gradient descent (SGD) algorithm. The training scripts can be found in [myutils.py](https://github.com/PacktPublishing/PyTorch-Computer-Vision-Cookbook/blob/master/Chapter10/myutils.py). Set the parameters and call train_val function to train the model.
 
 ```python
@@ -137,28 +128,4 @@ with torch.no_grad():
     pred = torch.argmax(out).item()
     print(pred)
 ```
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
