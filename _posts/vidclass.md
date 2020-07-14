@@ -100,6 +100,36 @@ model,loss_hist,metric_hist = myutils.train_val(model,params_train)
 
 ## Model Deployment
 
+Now, it's time to deploy the model on a video. I put the required utility functions in the [myutils.py](https://github.com/PacktPublishing/PyTorch-Computer-Vision-Cookbook/blob/master/Chapter10/myutils.py) file. To deploy the model, we need to instantiate an object
+of the model class. You can do this by calling the ```get_model``` utility function defined in ```myutils.py```. 
+
+```python
+import myutils
+model_type = "rnn"
+model = myutils.get_model(model_type = model_type, num_classes = 5)
+model.eval();
+```
+
+Then, we will load the trained weights into the model.
+
+```python
+import torch
+path2weights = "./models/weights_"+model_type+".pt"
+model.load_state_dict(torch.load(path2weights))
+```
+
+Now you can load a video using ```get_frames```:
+
+```python
+frames, v_len = myutils.get_frames(path2vido, n_frames=16)
+```
+
+![sample video deploy]()
+
+
+
+
+
 
 
 
