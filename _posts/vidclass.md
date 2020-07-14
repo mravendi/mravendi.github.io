@@ -118,16 +118,25 @@ path2weights = "./models/weights_"+model_type+".pt"
 model.load_state_dict(torch.load(path2weights))
 ```
 
-Now you can load a video using ```get_frames```:
+Let us load a video using ```get_frames```:
 
 ```python
 frames, v_len = myutils.get_frames(path2vido, n_frames=16)
 ```
 
-![sample video deploy]()
+Here are a few frames of the video:
+![sample video deploy](/images/vidclass/samplevid2.png)
 
 
+Then, conver the frames into a tensor and pass it to the model to get the predictions:
 
+```python
+with torch.no_grad():
+    out = model(imgs_tensor.to(device)).cpu()
+    print(out.shape)
+    pred = torch.argmax(out).item()
+    print(pred)
+```
 
 
 
