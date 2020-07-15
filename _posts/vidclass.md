@@ -130,3 +130,4 @@ with torch.no_grad():
     print(pred)
 ```
 
+The depolyment scripts can be found in this [notebook](https://github.com/PacktPublishing/PyTorch-Computer-Vision-Cookbook/blob/master/Chapter10/DeployingModel.ipynb).
