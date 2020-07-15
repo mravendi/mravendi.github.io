@@ -8,25 +8,24 @@ The outline of this post is as the following:
 {:toc}
 
 ## Introduction
-A video is a collection of sequential frames or images that are played one after another. Most of the videos that we deal with in our daily life have
-more than 30 frames per second. Thus, compared to image classification, we have to deal with a large scale of data even for short videos.
+A video is a collection of sequential frames or images that are played one after another. Most videos that we deal with in our daily life have
+more than 30 frames per second. Thus, compared to image classification, we have to deal with a large scale of data even for short videos. Since the images are highly correlated, it is common to skip the intermediate frames and process fewer frames per second. 
 
 
 ## Data Preparation
 The first step is to prepare the dataset. We will need a training dataset to train our model and a test or validation dataset to evaluate the model. For this purpose, we will use [HMDB: a large human motion database](https://serre-lab.clps.brown.edu/resource/hmdb-a-large-human-motion-database/#overview). 
 
-The HMDB dataset was collected from various sources, including movies, the Prelinger Archive, YouTube, and Google videos. It is a pretty large dataset (2 GB) with a total of 7,000 video clips. There are 51 action classes, each containing a minimum of 101 clips.
+The HMDB dataset was collected from various sources, including movies, YouTube, and Google videos. It is a large dataset (2 GB) with a total of 7,000 video clips. There are 51 action classes, each containing a minimum of 101 clips. 
 
-Here is the first frame of a few sample clips:
+Here is the first frame of a few sample video clips:
 
 ![sample collection](/images/vidclass/samplevid.png)
 
-You need to first download and extract the data into a local folder named data. The folder should contain 51 subfolders corresponding to 51 class actions. Also, each subfolder should contain
-at least 101 video files of the .avi type for each action class. 
+You need to first download and extract the data into a local folder named data. The folder should contain 51 subfolders corresponding to 51 class actions. Also, each subfolder should contain at least 101 video files of the .avi type for each action class. 
 
-In the first part of data preparation, we will convert the videos into images. We will only use 16 frames from each video that are equally spaced across the entire video and store them as .jpg files. This is to reduce computational complexity.
+In the first part of data preparation, we will convert the videos into images. We will only use 16 frames from each video that are equally spaced across the entire video and store them as .jpg files. This step is to reduce the computational complexity.
 
-To this end, I defined two helper functions to get (```get_frames```) and store the frames (```store_frames```) from a video. The helper functions are defined in ```myutils.py```, which is available [here](https://github.com/PacktPublishing/PyTorch-Computer-Vision-Cookbook/blob/master/Chapter10/myutils.py).
+I defined two helper functions to get (```get_frames```) and store the frames (```store_frames```) from a video. The helper functions are defined in ```myutils.py```, which is available [here](https://github.com/PacktPublishing/PyTorch-Computer-Vision-Cookbook/blob/master/Chapter10/myutils.py).
 
 Also, in this [notebook](https://github.com/PacktPublishing/PyTorch-Computer-Vision-Cookbook/blob/master/Chapter10/prepare_data.ipynb), you can see how I used the helper functions to loop over the videos, extract 16 frames, and store them as jpg files.
 
