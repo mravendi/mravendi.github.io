@@ -73,9 +73,8 @@ Set the model parameters and define an instance of the model class:
 
 
 ## Model Training
-
-We defined dataset and the model. Similar to image classification, we can also use the cross-entropy objective function. For training, we will
-use the stochastic gradient descent (SGD) algorithm. The training scripts can be found in [myutils.py](https://github.com/PacktPublishing/PyTorch-Computer-Vision-Cookbook/blob/master/Chapter10/myutils.py). Set the parameters and call train_val function to train the model.
+It is time to train the model. The base CNN model was pre-trained. So we will start from the pre-trained weights and fine-tune the model on the HMDB dataset.
+The training scripts can be found in [myutils.py](https://github.com/PacktPublishing/PyTorch-Computer-Vision-Cookbook/blob/master/Chapter10/myutils.py). Set the parameters and call ```train_val``` function to train the model.
 
 ```python
 params_train={
