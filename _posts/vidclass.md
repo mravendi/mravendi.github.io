@@ -47,22 +47,18 @@ Then, we will define two instances of the class for the training and test datase
 See this [notebook](https://github.com/PacktPublishing/PyTorch-Computer-Vision-Cookbook/blob/master/Chapter10/Chapter10.ipynb) for the source code of the dataset and data loader classes.
 
 ## Model Implementation
-We will use a model to process multiple images of a video to extract temporal correlation. The model is based on RNN architecture. The goal of RNN models is to extract the
-temporal correlation between the images by keeping a memory of past images. The block
+We will use a deep learning model to process multiple images of a video to extract the temporal correlation. The model is a combined CNN-RNN architecture. The goal of RNN models is to extract the temporal correlation between the images by keeping a memory of past images. The block
 diagram of the model is as follows:
 
 ![rnn model](/images/vidclass/rnnmodel.png)
 
-As we can see, the images of a video are fed to a base model to extract high-level features.
+The images of a video are fed to a CNN model to extract high-level features.
 The features are then fed to an RNN layer and the output of the RNN layer is connected to
-a fully connected layer to get the classification output. The input to this model should be in
-the shape of [batch_size, timesteps, 3, height, width], where timesteps=16 is
-the number of frames per video. We will use one of the most popular models that have been
-pre-trained on the ImageNet dataset, called ResNet18, as the base model.
+a fully connected layer to get the classification output. We will use ResNet18 pre-trained on ImageNet, as the base CNN model.
 
-You can find an implementation of the model class in PyTorch called ```Resnt18Rnn``` in this [notebook](https://github.com/PacktPublishing/PyTorch-Computer-Vision-Cookbook/blob/master/Chapter10/Chapter10.ipynb).
+You can find an implementation of the full model class in PyTorch called ```Resnt18Rnn``` in this [notebook](https://github.com/PacktPublishing/PyTorch-Computer-Vision-Cookbook/blob/master/Chapter10/Chapter10.ipynb).
 
-Then, you can instantiate an object of the class:
+Set the model parameters and define an instance of the model class:
 
 ```python
     params_model={
@@ -73,8 +69,6 @@ Then, you can instantiate an object of the class:
         "rnn_hidden_size": 100,}
     model = Resnt18Rnn(params_model)      
 ```
-
-By setting the parameter num_classes according to the number of categories you want to classify.
 
 
 
