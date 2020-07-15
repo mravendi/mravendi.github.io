@@ -15,7 +15,16 @@ more than 30 frames per second. Thus, compared to image classification, we have 
 ## Data Preparation
 The first step is to prepare the dataset. We will need a training dataset to train our model and a test or validation dataset to evaluate the model. For this purpose, we will use [HMDB: a large human motion database](https://serre-lab.clps.brown.edu/resource/hmdb-a-large-human-motion-database/#overview). 
 
-The HMDB dataset was collected from various sources, including movies, YouTube, and Google videos. It is a large dataset (2 GB) with a total of 7,000 video clips. There are 51 action classes, each containing a minimum of 101 clips. 
+The HMDB dataset was collected from various sources, including movies, YouTube, and Google videos. It is a large dataset (2 GB) with a total of 7,000 video clips. There are 51 action classes, each containing a minimum of 101 clips. We will assign a label to each action, for example:
+
+```python
+{'sword_exercise': 0,
+    'pushup': 1,
+    'turn': 2,
+    'draw_sword': 3,
+    'clap': 4,
+    ...
+```
 
 Here is the first frame of a few sample video clips:
 
