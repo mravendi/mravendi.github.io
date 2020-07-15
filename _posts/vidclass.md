@@ -44,7 +44,7 @@ Next, we will define a PyTorch dataset class called ```VideoDataset```. In the c
 
 Then, we will define two instances of the class for the training and test datasets. Next, we will define two data loaders. Data loaders will help us to automatically grab mini-batches from the dataset during training. For instance, if we set ```batch_size=8```, data loaders will return mini-batches (tensors) of shape ```[8, 16, 3, 112, 112]``` in each iteration.
 
-
+See this [notebook](https://github.com/PacktPublishing/PyTorch-Computer-Vision-Cookbook/blob/master/Chapter10/Chapter10.ipynb) for the source code of the dataset and data loader classes.
 
 ## Model Implementation
 We will use a model to process multiple images of a video to extract temporal correlation. The model is based on RNN architecture. The goal of RNN models is to extract the
