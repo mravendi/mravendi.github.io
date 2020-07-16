@@ -1,6 +1,6 @@
 # Video Classification with CNN, RNN, and PyTorch
 
-Video classification is the task assigning a label to a video clip. This application is useful if you want to know what kind of
+Video classification is the task of assigning a label to a video clip. This application is useful if you want to know what kind of
 activity is happening in a video. In this post, I will share a method of classifying videos using Convolutional Neural Networks (CNN) and Recurrent Neural Networks (RNN) implemented in PyTorch.
 
 The outline of this post is as the following:
