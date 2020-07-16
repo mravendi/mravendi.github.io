@@ -5,4 +5,6 @@ See my book: [PyTorch Computer Vision Cook Book](https://www.amazon.com/PyTorch-
 
 ![pytorch book cover](/images/pytorchcvc.jpg)
 
+[The book comes with full implementation and source codes!](https://github.com/PacktPublishing/PyTorch-Computer-Vision-Cookbook/tree/master/Chapter10)
+
 
