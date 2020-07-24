@@ -69,6 +69,18 @@ SUM(expr)
 
 
 
+## CREATE
+
+```
+DROP TABLE IF EXISTS table_name;
+CREATE TABLE table_name AS
+       -- define the table columns here
+       SELECT cols 
+       FROM source_table
+       WHERE condtitions
+       DISTRIBUTED RANDOMLY;
+```
+
 
 
 
