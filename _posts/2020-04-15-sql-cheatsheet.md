@@ -71,7 +71,7 @@ SUM(expr)
 
 ## CREATE
 
-```
+```sql
 DROP TABLE IF EXISTS table_name;
 CREATE TABLE table_name AS
        -- define the table columns here
