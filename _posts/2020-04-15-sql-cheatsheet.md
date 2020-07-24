@@ -87,9 +87,8 @@ CREATE TABLE table_name AS
 CASE 
        WHEN cond1 THEN val1 
        WHEN cond2 THEN val2 
-       ...
        ELSE valn 
-       END
+END
 ```
 
 
