@@ -92,6 +92,11 @@ END
 ```
 
 
+## JOINS
+
+- JOIN and INNER JOIN are equivalent
+
+
 
 
 
