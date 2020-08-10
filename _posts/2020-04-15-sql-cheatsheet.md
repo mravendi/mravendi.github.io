@@ -41,7 +41,7 @@ SELECT date_col1, date_col2,
 ```
 
 
-## window functions
+## Window Functions
 
 - to get the sum of an expression over the past 5 days:
 ```sql
