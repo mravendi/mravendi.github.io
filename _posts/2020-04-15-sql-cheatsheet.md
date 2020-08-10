@@ -68,6 +68,16 @@ SUM(expr)
 - to get the sum of an expression over a window in the future, define two window functions from current row and then use the subtract to get the difference.
 
 
+- Difference betwee ROW_NUMBER(), RANK(), and DENSE_RANK()
+
+ROW_NUMBER: assigns unique numbers to each row within the PARTITION given the ORDER BY clause
+
+RANK():  behaves like ROW_NUMBER(), except that equal rows are ranked the same, there will be gaps between the ranks due to equal rows
+
+DENSE_RANK(): a rank with no gaps
+
+
+
 
 ## CREATE
 
