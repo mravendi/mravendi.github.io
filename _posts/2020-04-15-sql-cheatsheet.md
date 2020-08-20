@@ -105,7 +105,9 @@ CREATE TABLE table_name AS
 
 ```sql
 WITH cte_name AS
-       (CTE_definition)
+       (SELECT cols
+       FROM table_name
+       WHERE cond)
 ```
 
 - creating a table with CTE
