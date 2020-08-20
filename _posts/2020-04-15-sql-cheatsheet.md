@@ -41,6 +41,14 @@ SELECT date_col1, date_col2,
 ```
 
 
+- Number of days from today
+```sql
+SELECT date_col2,
+       now()::date - date_col2::date AS days_diff
+       FROM table_name
+```
+
+
 ## Window Functions
 
 - to get the sum of an expression over the past 5 days:
