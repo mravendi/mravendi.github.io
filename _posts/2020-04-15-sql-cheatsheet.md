@@ -87,8 +87,10 @@ SUM(expr)
 
 
 
-## CREATE
+## CREATE TABLE
 
+
+- creating a table
 ```sql
 DROP TABLE IF EXISTS table_name;
 CREATE TABLE table_name AS
@@ -98,6 +100,29 @@ CREATE TABLE table_name AS
        WHERE condtitions
        DISTRIBUTED RANDOMLY;
 ```
+
+- defining common table expression CTE
+
+```sql
+WITH cte_name AS
+       (CTE_definition)
+```
+
+- creating a table with CTE
+
+```sql
+DROP TABLE IF EXISTS table_name;
+CREATE TABLE table_name AS
+       WITH cte1_name AS 
+              (cte1_definition),
+             cte2_name AS 
+              (cte2_definition)              
+       SELECT cols 
+       FROM cte1_name or cte2_name or join of them
+       DISTRIBUTED RANDOMLY;
+```
+
+
 
 ## CASE ... WHEN ...
 
