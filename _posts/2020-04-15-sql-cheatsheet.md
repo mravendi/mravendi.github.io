@@ -51,6 +51,8 @@ SELECT date_col2,
 
 ## Window Functions
 
+### Framed Window
+
 - to get the sum of an expression over the past 5 days:
 ```sql
 SUM(expr)
