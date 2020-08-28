@@ -63,6 +63,17 @@ SUM(expr)
        ) AS sum_last_5
 ```
 
+- to get the sum of an expression over a window the past 5 days and yesterday:
+```sql
+SUM(expr)
+       OVER(
+              PARTITION BY col1
+              ORDER BY datetime::date
+              RANGE BETWEEN 5 PRECEDING AND 1 PRECEDING
+       ) AS sum_last_5to1
+```
+
+
 
 - to get the sum of an expression over the next 5 days:
 ```sql
@@ -142,6 +153,10 @@ END
 ## JOINS
 
 - JOIN and INNER JOIN are equivalent
+
+
+### Refrences
+- [Advanced SQL - window frames](https://mjk.space/advances-sql-window-frames/)
 
 
 
