@@ -8,3 +8,4 @@ See my book: [PyTorch Computer Vision Cook Book](https://www.amazon.com/PyTorch-
 [The book comes with the notebooks and scripts for all chapters!](https://github.com/PacktPublishing/PyTorch-Computer-Vision-Cookbook)
 
 
+You can use this discount code- 25PYCOMPVIS valid from 10th September -10th November 2020 to get a copy of my book on Amazon and Packt Websites.
