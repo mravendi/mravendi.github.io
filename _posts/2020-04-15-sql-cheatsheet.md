@@ -155,6 +155,15 @@ END
 - JOIN and INNER JOIN are equivalent
 
 
+## Get columns Data Types
+
+```sql
+SELECT column_name,data_type 
+FROM information_schema.columns 
+WHERE table_name = 'your_table_name';
+```
+
+
 ### Refrences
 - [Advanced SQL - window frames](https://mjk.space/advances-sql-window-frames/)
 
