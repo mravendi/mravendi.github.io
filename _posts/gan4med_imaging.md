@@ -60,10 +60,10 @@ The code is shared in this [Jupiter notebook](https://nbviewer.jupyter.org/githu
 
 ### References:
 
-- DCGAN
-- How to Train a GAN?
-- KERAS-DCGAN
-- Keras GAN
-- Keras-GAN
+- [DCGAN](https://github.com/rajathkmp/DCGAN)
+- [How to Train a GAN?](https://github.com/soumith/ganhacks)
+- [KERAS-DCGAN](https://github.com/jacobgil/keras-dcgan)
+- [Keras GAN](https://github.com/mravendi/KerasGAN)
+- [Keras-GAN](https://github.com/phreeza/keras-GAN)
 
 
