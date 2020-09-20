@@ -30,8 +30,8 @@ annotation of the right ventricle (RV) of the heart is shown below.
 
 We use a classic GAN network with two blocks:
 
-    Generator: A convolutional neural network to generate images and corresponding masks.
-    Discriminator: A convolutional neural network to classify real images/masks from generated images/masks.
+- Generator: A convolutional neural network to generate images and corresponding masks.
+- Discriminator: A convolutional neural network to classify real images/masks from generated images/masks.
 
 Here mask refers to a binary mask corresponding to the annotation.
 
@@ -42,12 +42,12 @@ The block diagram of the network is shown below.
 
 To train the algorithm we follow these steps:
 
-    Initialize Generator and Discriminator randomly.
-    Generate some images/masks using Generator.
-    Train Discriminator using the collected real images/masks (with y=1 as labels) and generated images/masks (with y=0 as labels).
-    Freeze the weights in Discriminator and stack it to Generator (figure below).
-    Train the stacked network using the generated images with y=1 as forced labels.
-    Return to step 2.
+ - Initialize Generator and Discriminator randomly.
+ - Generate some images/masks using Generator.
+ - Train Discriminator using the collected real images/masks (with y=1 as labels) and generated images/masks (with y=0 as labels).
+ - Freeze the weights in Discriminator and stack it to Generator (figure below).
+ - Train the stacked network using the generated images with y=1 as forced labels.
+ - Return to step 2.
 
 
 It is noted that, initially, the generated images and masks are practically garbage. 
@@ -60,10 +60,10 @@ The code is shared in this [Jupiter notebook](https://nbviewer.jupyter.org/githu
 
 ### References:
 
-    DCGAN
-    How to Train a GAN?
-    KERAS-DCGAN
-    Keras GAN
-    Keras-GAN
+- DCGAN
+- How to Train a GAN?
+- KERAS-DCGAN
+- Keras GAN
+- Keras-GAN
 
 
