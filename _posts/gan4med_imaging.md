@@ -3,6 +3,7 @@
 In this post, we are going to show a way of using generative adversarial networks (GANs) to simultaneously generate medical 
 images and corresponding annotations. We use cardiac MR images for the experiment. For model development, we use Keras with theano backend.
 
+This post has been also posted on [Medium](https://medium.com/randomai/gan-for-medical-imaging-generating-images-and-annotations-8ad7c778809c). 
 
 ## Introduction
 
